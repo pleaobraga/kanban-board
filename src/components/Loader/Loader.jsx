@@ -1,23 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LoaderIcon from './LoaderIcon'
-import './Loading.scss'
+import './Loader.scss'
 
-const Loading = ({ className, color }) => {
+export const Loader = ({ className, color }) => {
   return (
-    <div className={`loading ${className}`}>
+    <div className={`loader ${className}`}>
       <LoaderIcon color={color} />
     </div>
   )
 }
 
-Loading.defaultProps = {
+Loader.defaultProps = {
   color: '#298a95'
 }
 
-Loading.propTypes = {
+Loader.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string
 }
 
-export default React.memo(Loading)
+export default React.memo(Loader)

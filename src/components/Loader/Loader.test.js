@@ -1,9 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Loading from './Loading'
+import Loader from './Loader'
 
-describe('Loading', () => {
-  let loading = mount(<Loading />)
+describe('Loader', () => {
+  let loading = mount(<Loader />)
 
   it('render proprely', () => {
     expect(loading).toMatchSnapshot()

@@ -90,9 +90,9 @@ exports[`Content Page should render loading correctly 1`] = `
   }
 >
   <ContentPage>
-    <Loading>
+    <Loader>
       <div
-        className="loading undefined"
+        className="loader undefined"
       >
         <LoaderIcon
           color="#298a95"
@@ -379,7 +379,7 @@ exports[`Content Page should render loading correctly 1`] = `
           </svg>
         </LoaderIcon>
       </div>
-    </Loading>
+    </Loader>
   </ContentPage>
 </Provider>
 `;

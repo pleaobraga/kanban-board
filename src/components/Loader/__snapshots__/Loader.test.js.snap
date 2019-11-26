@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loading render proprely 1`] = `
-<Loading>
+exports[`Loader render proprely 1`] = `
+<Loader>
   <div
-    className="loading undefined"
+    className="loader undefined"
   >
     <LoaderIcon
       color="#298a95"
@@ -290,5 +290,5 @@ exports[`Loading render proprely 1`] = `
       </svg>
     </LoaderIcon>
   </div>
-</Loading>
+</Loader>
 `;
