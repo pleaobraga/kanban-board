@@ -4,8 +4,15 @@ import { startCase, kebabCase } from 'lodash'
 import './Card.scss'
 
 export const Card = ({ type, duration, severity }) => {
+  const deleteItem = () => {
+    //TODO Implemen delete function
+  }
+
   return (
     <div className={`card card__${kebabCase(type)}`}>
+      <i className="material-icons close-icon" onClick={deleteItem}>
+        close
+      </i>
       <h3 className="card--type">{startCase(type)}</h3>
       <h4 className="card--duration">{`${duration} hr${
         duration > 1 ? 's' : ''
