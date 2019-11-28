@@ -1,11 +1,11 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import Card from './Card'
 
 describe('Card', () => {
-  const card = shallow(<Card title="Test" text="test" />)
+  const card = mount(<Card title="Test" text="test" />)
 
-  it('render proprely', () => {
+  it('render properly', () => {
     expect(card).toMatchSnapshot()
   })
 })
