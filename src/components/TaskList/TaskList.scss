@@ -1,0 +1,35 @@
+@import '../../styles/_colors.scss';
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 0rem;
+
+  border-left: 3px solid $dark-blue;
+  border-right: 3px solid $dark-blue;
+
+  max-width: 49rem;
+
+  &--title {
+    font-family: 'Handlee', cursive;
+    font-size: 5rem;
+
+    text-align: center;
+    width: 100%;
+
+    border-bottom: 3px solid $dark-blue;
+  }
+
+  &--cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    padding: 2rem;
+
+    .card {
+      margin: 0.5rem;
+    }
+  }
+}
