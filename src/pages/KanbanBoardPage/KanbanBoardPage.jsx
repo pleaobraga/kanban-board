@@ -1,20 +1,26 @@
-import React from 'react'
-import Board from '../../components/Board'
 import './KanbanBoardPage.scss'
+
+import React from 'react'
+import { DragDropContext } from 'react-beautiful-dnd'
+
+import Board from '../../components/Board'
 
 const KanbanBoardPage = () => {
   const cards = [
     {
+      id: '0',
       type: 'feature',
       duration: 1,
       severity: 'hight'
     },
     {
+      id: '1',
       type: 'research',
       duration: 2,
       severity: 'medium'
     },
     {
+      id: '2',
       type: 'update',
       duration: 3,
       severity: 'low'
@@ -23,22 +29,19 @@ const KanbanBoardPage = () => {
 
   const lists = [
     {
+      id: '0',
       title: 'Backlog',
-      cards
-    },
-    {
-      title: 'To do ',
-      cards
-    },
-    {
-      title: 'Done',
       cards
     }
   ]
 
+  const onDragEnd = () => {}
+
   return (
     <div className="page page-kanban-board">
-      <Board lists={lists} />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Board lists={lists} />
+      </DragDropContext>
     </div>
   )
 }
