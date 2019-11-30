@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task List render properly 1`] = `
+<TaskList
+  cards={
+    Array [
+      Object {
+        "duration": 1,
+        "severity": "hight",
+        "type": "feature",
+      },
+      Object {
+        "duration": 2,
+        "severity": "medium",
+        "type": "research",
+      },
+      Object {
+        "duration": 3,
+        "severity": "low",
+        "type": "update",
+      },
+    ]
+  }
+  title="Task List"
+>
+  <div
+    className="task-list"
+  >
+    <h2
+      className="task-list--title"
+    >
+      TASK LIST
+    </h2>
+    <div
+      className="task-list--cards-container"
+    >
+      <Memo(Card)
+        duration={1}
+        key="0"
+        severity="hight"
+        type="feature"
+      >
+        <div
+          className="card card__feature"
+        >
+          <i
+            className="material-icons close-icon"
+            onClick={[Function]}
+          >
+            close
+          </i>
+          <h3
+            className="card--type"
+          >
+            Feature
+          </h3>
+          <h4
+            className="card--duration"
+          >
+            1 hr
+          </h4>
+          <h3
+            className="card--severity"
+          >
+            Hight
+          </h3>
+        </div>
+      </Memo(Card)>
+      <Memo(Card)
+        duration={2}
+        key="1"
+        severity="medium"
+        type="research"
+      >
+        <div
+          className="card card__research"
+        >
+          <i
+            className="material-icons close-icon"
+            onClick={[Function]}
+          >
+            close
+          </i>
+          <h3
+            className="card--type"
+          >
+            Research
+          </h3>
+          <h4
+            className="card--duration"
+          >
+            2 hrs
+          </h4>
+          <h3
+            className="card--severity"
+          >
+            Medium
+          </h3>
+        </div>
+      </Memo(Card)>
+      <Memo(Card)
+        duration={3}
+        key="2"
+        severity="low"
+        type="update"
+      >
+        <div
+          className="card card__update"
+        >
+          <i
+            className="material-icons close-icon"
+            onClick={[Function]}
+          >
+            close
+          </i>
+          <h3
+            className="card--type"
+          >
+            Update
+          </h3>
+          <h4
+            className="card--duration"
+          >
+            3 hrs
+          </h4>
+          <h3
+            className="card--severity"
+          >
+            Low
+          </h3>
+        </div>
+      </Memo(Card)>
+    </div>
+  </div>
+</TaskList>
+`;

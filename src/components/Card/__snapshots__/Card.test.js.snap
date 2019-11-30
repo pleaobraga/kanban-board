@@ -1,19 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Card render proprely 1`] = `
-<div
-  className="card card__"
+exports[`Card render properly 1`] = `
+<Memo(Card)
+  text="test"
+  title="Test"
 >
-  <h3
-    className="card--type"
-  />
-  <h4
-    className="card--duration"
+  <div
+    className="card card__"
   >
-    undefined hr
-  </h4>
-  <h3
-    className="card--severity"
-  />
-</div>
+    <i
+      className="material-icons close-icon"
+      onClick={[Function]}
+    >
+      close
+    </i>
+    <h3
+      className="card--type"
+    />
+    <h4
+      className="card--duration"
+    >
+      undefined hr
+    </h4>
+    <h3
+      className="card--severity"
+    />
+  </div>
+</Memo(Card)>
 `;

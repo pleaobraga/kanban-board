@@ -24,6 +24,12 @@ exports[`Content Page should render content correctly 1`] = `
         <div
           className="card card__"
         >
+          <i
+            className="material-icons close-icon"
+            onClick={[Function]}
+          >
+            close
+          </i>
           <h3
             className="card--type"
           />
