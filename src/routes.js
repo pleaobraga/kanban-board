@@ -2,24 +2,16 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import DynamicImport from './components/DynamicImport'
 import ErrorPage from './pages/ErrorPage'
-import Loading from './components/Loading'
+import Loading from './components/Loader'
 
-const WelcomePage = () => (
+const KanbanBoardPage = () => (
   <DynamicImport
     loadComponent={() =>
-      import(/*  webpackChunkName: "welcomePage" */ './pages/WelcomePage')
+      import(
+        /*  webpackChunkName: "kanbanBoardPage" */ './pages/KanbanBoardPage'
+      )
     }
     ErrorComponent={ErrorPage}
-    LoadingComponent={() => <Loading />}
-  />
-)
-
-const ContentPage = () => (
-  <DynamicImport
-    loadComponent={() =>
-      import(/*  webpackChunkName: "contentPage" */ './pages/ContentPage')
-    }
-    ErrorComponent={() => ErrorPage}
     LoadingComponent={() => <Loading />}
   />
 )
@@ -29,8 +21,7 @@ const Routes = () => {
     <BrowserRouter>
       <React.Suspense fallback={<ErrorPage />}>
         <Switch>
-          <Route path="/content" component={ContentPage} />
-          <Route exact path="/" component={WelcomePage} />
+          <Route exact path="/" component={KanbanBoardPage} />
           <Route component={ErrorPage} />
         </Switch>
       </React.Suspense>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { KanbanBoard } from './KanbanBoard'
+import { Board } from './Board'
 
 const cards = [
   {
@@ -35,8 +35,8 @@ const lists = [
   }
 ]
 
-export default storiesOf('Components | kanban Board', module).add(
+export default storiesOf('Components | Board', module).add(
   'default',
-  () => <KanbanBoard lists={lists} />,
+  () => <Board lists={lists} />,
   { info: { inline: true, header: false } }
 )

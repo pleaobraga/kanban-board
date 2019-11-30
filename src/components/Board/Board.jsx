@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TaskList from '../TaskList'
-import './KanbanBoard.scss'
+import './Board.scss'
 
-export const KanbanBoard = ({ lists }) => {
+export const Board = ({ lists }) => {
   return (
-    <div className="kanban-board">
+    <div className="board">
       {lists.map(list => (
         <TaskList key={list.title} title={list.title} cards={list.cards} />
       ))}
@@ -13,7 +13,7 @@ export const KanbanBoard = ({ lists }) => {
   )
 }
 
-KanbanBoard.propTypes = {
+Board.propTypes = {
   lists: PropTypes.arrayOf({
     title: PropTypes.string.isRequired,
     cards: PropTypes.arrayOf(
@@ -32,4 +32,4 @@ KanbanBoard.propTypes = {
   })
 }
 
-export default KanbanBoard
+export default Board

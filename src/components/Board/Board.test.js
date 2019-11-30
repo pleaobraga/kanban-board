@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import KanbanBoard from './KanbanBoard'
+import Board from './Board'
 
 const cards = [
   {
@@ -36,7 +36,7 @@ const lists = [
 ]
 
 describe('Kanban Board', () => {
-  const component = mount(<KanbanBoard lists={lists} />)
+  const component = mount(<Board lists={lists} />)
 
   it('render properly', () => {
     expect(component).toMatchSnapshot()
