@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Kanban Board Page render proprely 1`] = `
+<div
+  className="page page-kanban-board"
+>
+  <Board
+    lists={
+      Array [
+        Object {
+          "cards": Array [
+            Object {
+              "duration": 1,
+              "severity": "hight",
+              "type": "feature",
+            },
+            Object {
+              "duration": 2,
+              "severity": "medium",
+              "type": "research",
+            },
+            Object {
+              "duration": 3,
+              "severity": "low",
+              "type": "update",
+            },
+          ],
+          "title": "Backlog",
+        },
+        Object {
+          "cards": Array [
+            Object {
+              "duration": 1,
+              "severity": "hight",
+              "type": "feature",
+            },
+            Object {
+              "duration": 2,
+              "severity": "medium",
+              "type": "research",
+            },
+            Object {
+              "duration": 3,
+              "severity": "low",
+              "type": "update",
+            },
+          ],
+          "title": "To do ",
+        },
+        Object {
+          "cards": Array [
+            Object {
+              "duration": 1,
+              "severity": "hight",
+              "type": "feature",
+            },
+            Object {
+              "duration": 2,
+              "severity": "medium",
+              "type": "research",
+            },
+            Object {
+              "duration": 3,
+              "severity": "low",
+              "type": "update",
+            },
+          ],
+          "title": "Done",
+        },
+      ]
+    }
+  />
+</div>
+`;

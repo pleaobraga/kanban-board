@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Kanban Board render properly 1`] = `
-<KanbanBoard
+<Board
   lists={
     Array [
       Object {
@@ -68,7 +68,7 @@ exports[`Kanban Board render properly 1`] = `
   }
 >
   <div
-    className="kanban-board"
+    className="board"
   >
     <TaskList
       cards={
@@ -470,5 +470,5 @@ exports[`Kanban Board render properly 1`] = `
       </div>
     </TaskList>
   </div>
-</KanbanBoard>
+</Board>
 `;
