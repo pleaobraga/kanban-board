@@ -7,6 +7,8 @@ export default storiesOf('Components | Card', module).add(
   'default',
   () => (
     <Card
+      id={'0'}
+      index={0}
       type={select(
         'Type',
         ['feature', 'bug fix', 'update', 'research', 'content'],
