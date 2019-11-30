@@ -1,0 +1,12 @@
+@import '../../styles/_colors.scss';
+
+.kanban-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &:first-child,
+  &:last-child {
+    border: none;
+  }
+}

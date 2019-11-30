@@ -3,6 +3,7 @@
 .task-list {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 
   padding: 1rem 0rem;
 
