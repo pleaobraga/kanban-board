@@ -34,6 +34,11 @@ exports[`Kanban Board Page render proprely 1`] = `
             "id": "0",
             "title": "Backlog",
           },
+          Object {
+            "cards": Array [],
+            "id": "1",
+            "title": "To DO",
+          },
         ]
       }
     />

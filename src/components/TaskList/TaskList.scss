@@ -11,6 +11,7 @@
   border-right: 3px solid $dark-blue;
 
   max-width: 49rem;
+  min-width: 30rem;
 
   .dragging-over {
     background: skyblue;
@@ -30,6 +31,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    height: 100%;
 
     padding: 2rem;
 

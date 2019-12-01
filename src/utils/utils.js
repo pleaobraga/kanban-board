@@ -25,7 +25,7 @@ export const removeObjFromArray = (array, object) => {
 
   if (index === -1) return
 
-  array.splice(index.index, 1)
+  array.splice(index, 1)
 
   return array
 }

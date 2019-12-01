@@ -32,6 +32,11 @@ class KanbanBoardPage extends React.Component {
             severity: 'low'
           }
         ]
+      },
+      {
+        id: '1',
+        title: 'To DO',
+        cards: []
       }
     ]
   }
@@ -50,21 +55,63 @@ class KanbanBoardPage extends React.Component {
       return
     }
 
-    const column = findObject(this.state.lists, 'id', source.droppableId)
-    const newCardsList = Array.from(column.cards)
-    const removedItem = newCardsList.splice(source.index, 1)
-    newCardsList.splice(destination.index, 0, removedItem[0])
+    const startColumn = findObject(this.state.lists, 'id', source.droppableId)
+    const finishColum = findObject(
+      this.state.lists,
+      'id',
+      destination.droppableId
+    )
 
-    const newColumn = {
-      ...column,
-      cards: newCardsList
+    if (startColumn.id === finishColum.id) {
+      const column = findObject(this.state.lists, 'id', source.droppableId)
+      const newCardsList = Array.from(column.cards)
+      const removedItem = newCardsList.splice(source.index, 1)
+      newCardsList.splice(destination.index, 0, removedItem[0])
+
+      const newColumn = {
+        ...column,
+        cards: newCardsList
+      }
+
+      const newlists = removeObjFromArray(Array.from(this.state.lists), column)
+
+      const sortList = [...newlists, newColumn].sort((a, b) => a.id - b.id)
+
+      this.setState({
+        lists: [...sortList]
+      })
+    } else {
+      const startCards = Array.from(startColumn.cards)
+
+      const removedItem = startCards.splice(source.index, 1)
+
+      const newStart = {
+        ...startColumn,
+        cards: startCards
+      }
+
+      const finishCards = Array.from(finishColum.cards)
+
+      finishCards.splice(destination.index, 0, removedItem[0])
+
+      const newFinish = {
+        ...finishColum,
+        cards: finishCards
+      }
+
+      let newlists = Array.from(this.state.lists)
+
+      removeObjFromArray(newlists, startColumn)
+      removeObjFromArray(newlists, finishColum)
+
+      const sortList = [...newlists, newStart, newFinish].sort(
+        (a, b) => a.id - b.id
+      )
+
+      this.setState({
+        lists: [...sortList]
+      })
     }
-
-    const newlists = removeObjFromArray(Array.from(this.state.lists), column)
-
-    this.setState({
-      lists: [...newlists, newColumn]
-    })
   }
 
   render() {
