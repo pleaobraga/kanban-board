@@ -31,7 +31,7 @@ exports[`Board render properly 1`] = `
       ]
     }
     id="0"
-    key="Backlog"
+    key="0"
     title="Backlog"
   />
   <TaskList
@@ -61,7 +61,7 @@ exports[`Board render properly 1`] = `
       ]
     }
     id="1"
-    key="To do "
+    key="1"
     title="To do "
   />
   <TaskList
@@ -91,7 +91,7 @@ exports[`Board render properly 1`] = `
       ]
     }
     id="2"
-    key="Done"
+    key="2"
     title="Done"
   />
 </div>
