@@ -12,15 +12,16 @@ export const TaskList = ({ id, title, cards }) => {
     <div className="task-list">
       <h2 className="task-list--title">{upperCase(title)}</h2>
       <Droppable droppableId={id}>
-        {provided => (
+        {(provided, snapshot) => (
           <div
-            className="task-list--cards-container"
+            className={`task-list--cards-container ${snapshot.isDraggingOver &&
+              'dragging-over'}`}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
             {cards.map((card, index) => (
               <Card
-                key={index}
+                key={card.id}
                 id={card.id}
                 index={index}
                 type={card.type}

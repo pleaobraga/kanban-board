@@ -12,9 +12,10 @@ export const Card = ({ id, index, type, duration, severity }) => {
 
   return (
     <Draggable draggableId={id} index={index}>
-      {provided => (
+      {(provided, snapshot) => (
         <div
-          className={`card card__${kebabCase(type)}`}
+          className={`card card__${kebabCase(type)} ${snapshot.isDragging &&
+            'card--dragging'}`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

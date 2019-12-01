@@ -68,6 +68,10 @@
     background-color: $green;
   }
 
+  &--dragging {
+    background-color: lightgreen;
+  }
+
   &--type {
     font-family: 'Handlee', cursive;
     font-size: 4rem;

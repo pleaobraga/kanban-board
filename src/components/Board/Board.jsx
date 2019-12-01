@@ -11,7 +11,7 @@ export const Board = ({ lists }) => {
       {lists.map(list => (
         <TaskList
           id={list.id}
-          key={list.title}
+          key={list.id}
           title={list.title}
           cards={list.cards}
         />
