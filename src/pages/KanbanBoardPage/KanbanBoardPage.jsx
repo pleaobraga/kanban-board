@@ -1,47 +1,31 @@
 import './KanbanBoardPage.scss'
 
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { DragDropContext } from 'react-beautiful-dnd'
 
 import Board from '../../components/Board'
+import Loading from '../../components/Loader'
+import ErrorPage from '../ErrorPage'
+import {
+  getBoard as actionGetBoard,
+  postBoard
+} from '../../reducers/BoardReducer'
 import { findObject, removeObjFromArray } from '../../utils/utils'
 
-class KanbanBoardPage extends React.Component {
-  state = {
-    lists: [
-      {
-        id: '0',
-        title: 'Backlog',
-        cards: [
-          {
-            id: 'test1',
-            type: 'feature',
-            duration: 1,
-            severity: 'hight'
-          },
-          {
-            id: 'test2',
-            type: 'research',
-            duration: 2,
-            severity: 'medium'
-          },
-          {
-            id: 'test3',
-            type: 'content',
-            duration: 3,
-            severity: 'low'
-          }
-        ]
-      },
-      {
-        id: '1',
-        title: 'To DO',
-        cards: []
-      }
-    ]
-  }
+const KanbanBoardPage = () => {
+  const dispatch = useDispatch()
+  const pageContent = useSelector(state => state.board)
 
-  changeCards = (
+  const getBoard = React.useCallback(() => dispatch(actionGetBoard()), [
+    dispatch
+  ])
+
+  React.useEffect(() => {
+    getBoard()
+  }, [])
+
+  const changeCards = (
     listInitial,
     InitialIndex,
     listDestination,
@@ -51,7 +35,7 @@ class KanbanBoardPage extends React.Component {
     const removedItem = newInitialCards.splice(InitialIndex, 1)
     let newDestinationList = null
 
-    let newlists = Array.from(this.state.lists)
+    let newlists = Array.from(pageContent.board.lists)
     removeObjFromArray(newlists, listInitial)
 
     if (listInitial === listDestination) {
@@ -76,12 +60,10 @@ class KanbanBoardPage extends React.Component {
 
     const sortList = [...newlists, newlistInitial].sort((a, b) => a.id - b.id)
 
-    this.setState({
-      lists: [...sortList]
-    })
+    dispatch(postBoard({ lists: [...sortList] }))
   }
 
-  onDragEnd = result => {
+  const onDragEnd = result => {
     const { destination, source } = result
 
     if (!destination) {
@@ -95,30 +77,31 @@ class KanbanBoardPage extends React.Component {
       return
     }
 
-    const listInitial = findObject(this.state.lists, 'id', source.droppableId)
+    const listInitial = findObject(
+      pageContent.board.lists,
+      'id',
+      source.droppableId
+    )
     const listDestination = findObject(
-      this.state.lists,
+      pageContent.board.lists,
       'id',
       destination.droppableId
     )
 
-    this.changeCards(
-      listInitial,
-      source.index,
-      listDestination,
-      destination.index
-    )
+    changeCards(listInitial, source.index, listDestination, destination.index)
   }
 
-  render() {
-    return (
-      <div className="page page-kanban-board">
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Board lists={this.state.lists} />
-        </DragDropContext>
-      </div>
-    )
-  }
+  return pageContent.errorContent ? (
+    <ErrorPage />
+  ) : pageContent.board ? (
+    <div className="page page-kanban-board">
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Board lists={pageContent.board.lists} />
+      </DragDropContext>
+    </div>
+  ) : (
+    <Loading />
+  )
 }
 
 export default KanbanBoardPage

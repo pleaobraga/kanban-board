@@ -6,14 +6,14 @@ const middlewares = [thunk]
 export const mockStore = configureStore(middlewares)
 
 export const initialStateReducer = {
-  content: null,
+  board: null,
   loadingContent: false,
   errorContent: false
 }
 
 export const initialStateRootReducer = {
   content: {
-    content: null,
+    board: null,
     loadingContent: false,
     errorContent: false
   }
