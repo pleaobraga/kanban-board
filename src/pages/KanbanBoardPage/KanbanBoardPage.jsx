@@ -41,6 +41,46 @@ class KanbanBoardPage extends React.Component {
     ]
   }
 
+  changeCards = (
+    listInitial,
+    InitialIndex,
+    listDestination,
+    DestinationIndex
+  ) => {
+    const newInitialCards = Array.from(listInitial.cards)
+    const removedItem = newInitialCards.splice(InitialIndex, 1)
+    let newDestinationList = null
+
+    let newlists = Array.from(this.state.lists)
+    removeObjFromArray(newlists, listInitial)
+
+    if (listInitial === listDestination) {
+      newInitialCards.splice(DestinationIndex, 0, removedItem[0])
+    } else {
+      const newDestinationCards = Array.from(listDestination.cards)
+      newDestinationCards.splice(DestinationIndex, 0, removedItem[0])
+
+      newDestinationList = {
+        ...listDestination,
+        cards: newDestinationCards
+      }
+
+      removeObjFromArray(newlists, listDestination)
+      newlists.push(newDestinationList)
+    }
+
+    const newlistInitial = {
+      ...listInitial,
+      cards: newInitialCards
+    }
+
+    const sortList = [...newlists, newlistInitial].sort((a, b) => a.id - b.id)
+
+    this.setState({
+      lists: [...sortList]
+    })
+  }
+
   onDragEnd = result => {
     const { destination, source } = result
 
@@ -55,63 +95,19 @@ class KanbanBoardPage extends React.Component {
       return
     }
 
-    const startColumn = findObject(this.state.lists, 'id', source.droppableId)
-    const finishColum = findObject(
+    const listInitial = findObject(this.state.lists, 'id', source.droppableId)
+    const listDestination = findObject(
       this.state.lists,
       'id',
       destination.droppableId
     )
 
-    if (startColumn.id === finishColum.id) {
-      const column = findObject(this.state.lists, 'id', source.droppableId)
-      const newCardsList = Array.from(column.cards)
-      const removedItem = newCardsList.splice(source.index, 1)
-      newCardsList.splice(destination.index, 0, removedItem[0])
-
-      const newColumn = {
-        ...column,
-        cards: newCardsList
-      }
-
-      const newlists = removeObjFromArray(Array.from(this.state.lists), column)
-
-      const sortList = [...newlists, newColumn].sort((a, b) => a.id - b.id)
-
-      this.setState({
-        lists: [...sortList]
-      })
-    } else {
-      const startCards = Array.from(startColumn.cards)
-
-      const removedItem = startCards.splice(source.index, 1)
-
-      const newStart = {
-        ...startColumn,
-        cards: startCards
-      }
-
-      const finishCards = Array.from(finishColum.cards)
-
-      finishCards.splice(destination.index, 0, removedItem[0])
-
-      const newFinish = {
-        ...finishColum,
-        cards: finishCards
-      }
-
-      let newlists = Array.from(this.state.lists)
-
-      removeObjFromArray(newlists, startColumn)
-      removeObjFromArray(newlists, finishColum)
-
-      const sortList = [...newlists, newStart, newFinish].sort(
-        (a, b) => a.id - b.id
-      )
-
-      this.setState({
-        lists: [...sortList]
-      })
-    }
+    this.changeCards(
+      listInitial,
+      source.index,
+      listDestination,
+      destination.index
+    )
   }
 
   render() {
