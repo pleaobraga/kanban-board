@@ -1,25 +1,25 @@
-"use strict";
+'use strict'
 
-const Hapi = require("@hapi/hapi");
-const Joi = require("@hapi/joi");
+const Hapi = require('@hapi/hapi')
+const Joi = require('@hapi/joi')
 
 const init = async () => {
   const server = Hapi.server({
     port: 3000,
-    host: "localhost"
-  });
+    host: 'localhost'
+  })
 
   server.route({
-    method: "GET",
-    path: "/",
+    method: 'GET',
+    path: '/',
     handler: (request, h) => {
-      return "Hello World!";
+      return 'Hello World!'
     }
-  });
+  })
 
   server.route({
-    method: "POST",
-    path: "/",
+    method: 'POST',
+    path: '/',
     config: {
       validate: {
         payload: Joi.object({
@@ -39,22 +39,22 @@ const init = async () => {
           )
         }),
         failAction: (request, h, error) => {
-          throw error;
+          throw error
         }
       }
     },
     handler: (request, h) => {
-      return request.payload;
+      return request.payload
     }
-  });
+  })
 
-  await server.start();
-  console.log("Server running on %s", server.info.uri);
-};
+  await server.start()
+  console.log('Server running on %s', server.info.uri)
+}
 
-process.on("unhandledRejection", err => {
-  console.log(err);
-  process.exit(1);
-});
+process.on('unhandledRejection', err => {
+  console.log(err)
+  process.exit(1)
+})
 
-init();
+init()
