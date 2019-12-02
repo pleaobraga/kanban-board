@@ -4,8 +4,8 @@ import * as constant from '../../utils/constants'
 import contentReducer, {
   getBoardStart,
   getBoardError,
-  getBoardSuccess,
-  getBoard
+  getBoardSuccess
+  // getBoard
 } from './BoardReducer'
 
 describe('Board Redux', () => {
