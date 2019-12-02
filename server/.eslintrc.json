@@ -1,9 +1,10 @@
 {
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
-  "extends": ["standard", "prettier"],
+  "extends": ["eslint:recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -20,7 +21,6 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
-    "jsx-quotes": ["error", "prefer-double"],
     "no-use-before-define": "error",
     "no-duplicate-imports": ["error", { "includeExports": true }]
   }
