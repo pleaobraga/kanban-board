@@ -101,52 +101,52 @@ describe('Board Redux', () => {
     })
   })
 
-  describe('Get the content', () => {
-    it('Success to get the content', () => {
-      const store = mockStore(initialStateReducer)
+  // describe('Get the content', () => {
+  //   it('Success to get the content', () => {
+  //     const store = mockStore(initialStateReducer)
 
-      return store.dispatch(getBoard()).then(() => {
-        const board = {
-          lists: [
-            {
-              id: '0',
-              title: 'Backlog',
-              cards: [
-                {
-                  id: 'test1',
-                  type: 'feature',
-                  duration: 1,
-                  severity: 'hight'
-                },
-                {
-                  id: 'test2',
-                  type: 'research',
-                  duration: 2,
-                  severity: 'medium'
-                },
-                {
-                  id: 'test3',
-                  type: 'content',
-                  duration: 3,
-                  severity: 'low'
-                }
-              ]
-            },
-            {
-              id: '1',
-              title: 'To DO',
-              cards: []
-            }
-          ]
-        }
-        const payload = [
-          { type: constant.GET_BOARD },
-          { type: constant.GET_BOARD_SUCCESS, board }
-        ]
+  //     return store.dispatch(getBoard()).then(() => {
+  //       const board = {
+  //         lists: [
+  //           {
+  //             id: '0',
+  //             title: 'Backlog',
+  //             cards: [
+  //               {
+  //                 id: 'test1',
+  //                 type: 'feature',
+  //                 duration: 1,
+  //                 severity: 'hight'
+  //               },
+  //               {
+  //                 id: 'test2',
+  //                 type: 'research',
+  //                 duration: 2,
+  //                 severity: 'medium'
+  //               },
+  //               {
+  //                 id: 'test3',
+  //                 type: 'content',
+  //                 duration: 3,
+  //                 severity: 'low'
+  //               }
+  //             ]
+  //           },
+  //           {
+  //             id: '1',
+  //             title: 'To DO',
+  //             cards: []
+  //           }
+  //         ]
+  //       }
+  //       const payload = [
+  //         { type: constant.GET_BOARD },
+  //         { type: constant.GET_BOARD_SUCCESS, board }
+  //       ]
 
-        const actions = store.getActions()
-        expect(actions).toEqual(payload)
-      })
-    })
-  })
+  //       const actions = store.getActions()
+  //       expect(actions).toEqual(payload)
+  //     })
+  //   })
+  // })
 })
