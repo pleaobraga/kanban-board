@@ -46,7 +46,7 @@ wait for a few seconds and the project will open a new tab in your browser autom
 
 ### Changing default port
 
-The default port is 8080 but if you want to change it to the port 3000 use this command
+The default port is 3000 but if you want to change it to the port 3000 use this command
 
 ```
 yarn start -- --port=3000

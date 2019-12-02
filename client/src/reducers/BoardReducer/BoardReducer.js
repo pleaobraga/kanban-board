@@ -1,5 +1,5 @@
 import * as constant from '../../utils/constants'
-import { simulateRequest } from '../../utils/utils'
+import axios from 'axios'
 
 export const getBoardStart = () => ({
   type: constant.GET_BOARD
@@ -23,39 +23,8 @@ export const postBoard = newBoard => ({
 export const getBoard = () => dispatch => {
   dispatch(getBoardStart())
 
-  return simulateRequest({
-    lists: [
-      {
-        id: '0',
-        title: 'Backlog',
-        cards: [
-          {
-            id: 'test1',
-            type: 'feature',
-            duration: 1,
-            severity: 'hight'
-          },
-          {
-            id: 'test2',
-            type: 'research',
-            duration: 2,
-            severity: 'medium'
-          },
-          {
-            id: 'test3',
-            type: 'content',
-            duration: 3,
-            severity: 'low'
-          }
-        ]
-      },
-      {
-        id: '1',
-        title: 'To DO',
-        cards: []
-      }
-    ]
-  })
+  return axios
+    .get('http://localhost:8080')
     .then(response => {
       dispatch(getBoardSuccess(response.data))
       return response.data
