@@ -1,0 +1,21 @@
+{
+  "name": "kanban-board-server",
+  "version": "1.0.0",
+  "description": "React Node Kanban server ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn run lint && yarn test"
+    }
+  },
+  "author": "pleaobraga",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/joi": "^16.1.8"
+  }
+}
