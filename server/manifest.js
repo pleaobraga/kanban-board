@@ -1,6 +1,8 @@
+import { port } from './config'
+
 const manifest = {
   server: {
-    port: 8080
+    port
   },
   register: {
     plugins: [

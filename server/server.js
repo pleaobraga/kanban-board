@@ -1,5 +1,3 @@
-'use strict'
-
 import Glue from '@hapi/glue'
 
 import manifest from './manifest'
