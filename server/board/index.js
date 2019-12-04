@@ -1,4 +1,6 @@
 import Joi from '@hapi/joi'
+// import service from './service'
+var models = require('../models')
 
 exports.register = (server, options) => {
   server.route({
@@ -47,42 +49,45 @@ exports.register = (server, options) => {
         additionalHeaders: ['content-type']
       }
     },
-    handler: (request, h) => {
-      const payload = {
-        lists: [
-          {
-            id: '0',
-            title: 'Backlog',
-            cards: [
-              {
-                id: 'test1',
-                type: 'feature',
-                duration: 1,
-                severity: 'hight'
-              },
-              {
-                id: 'test2',
-                type: 'research',
-                duration: 2,
-                severity: 'medium'
-              },
-              {
-                id: 'test3',
-                type: 'content',
-                duration: 3,
-                severity: 'low'
-              }
-            ]
-          },
-          {
-            id: '1',
-            title: 'To DO',
-            cards: []
-          }
-        ]
-      }
-
-      return payload
+    handler: async (request, h) => {
+      // await service.save()
+      // return h.response({
+      //   message: 'you did it'
+      // })
+      // const payload = {
+      //   lists: [
+      //     {
+      //       id: '0',
+      //       title: 'Backlog',
+      //       cards: [
+      //         {
+      //           id: 'test1',
+      //           type: 'feature',
+      //           duration: 1,
+      //           severity: 'hight'
+      //         },
+      //         {
+      //           id: 'test2',
+      //           type: 'research',
+      //           duration: 2,
+      //           severity: 'medium'
+      //         },
+      //         {
+      //           id: 'test3',
+      //           type: 'content',
+      //           duration: 3,
+      //           severity: 'low'
+      //         }
+      //       ]
+      //     },
+      //     {
+      //       id: '1',
+      //       title: 'To DO',
+      //       cards: []
+      //     }
+      //   ]
+      // }
+      // return payload
     }
   })
 }
