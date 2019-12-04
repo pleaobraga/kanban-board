@@ -2,9 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import Sequelize from 'sequelize'
 
-import { dbHost, dbUser, dbPass, dbPort } from '../config'
-import { async } from 'rxjs/internal/scheduler/async'
-var db = {}
+import { dbHost, dbUser, dbPass, dbPort } from '../config/config'
 
 const basename = path.basename(__filename)
 
@@ -27,6 +25,8 @@ const sequelize = new Sequelize('kanban_board', dbUser, dbPass, {
     acquire: 60000
   }
 })
+
+const db = {}
 
 fs.readdirSync(__dirname)
   .filter(file => {

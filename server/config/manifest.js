@@ -10,7 +10,7 @@ const manifest = {
       { plugin: require('@hapi/inert') },
       { plugin: require('@hapi/vision') },
       {
-        plugin: require('./board')
+        plugin: require('../plugin/board')
       }
     ]
   }

@@ -1,7 +1,7 @@
 import Glue from '@hapi/glue'
-var models = require('./models')
 
-import manifest from './manifest'
+import models from './models'
+import manifest from './config/manifest'
 
 const options = {
   relativeTo: __dirname
@@ -9,7 +9,7 @@ const options = {
 
 const startServer = async function() {
   try {
-    models.sequelize.sync()
+    // models.sequelize.sync()
 
     const server = await Glue.compose(manifest, options)
     await server.start()
