@@ -5,15 +5,17 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    index: DataTypes.INTEGER,
+    index: { type: DataTypes.INTEGER, allowNull: false },
     type: {
       type: DataTypes.ENUM,
-      values: ['feature', 'bugFix', 'update', 'research', 'content']
+      values: ['feature', 'bugFix', 'update', 'research', 'content'],
+      allowNull: false
     },
-    duration: DataTypes.INTEGER,
+    duration: { type: DataTypes.INTEGER, allowNull: false },
     severity: {
       type: DataTypes.ENUM,
-      values: ['hight', 'medium', 'low']
+      values: ['hight', 'medium', 'low'],
+      allowNull: false
     }
   })
 

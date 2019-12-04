@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    title: DataTypes.STRING
+    title: { type: DataTypes.STRING, allowNull: false }
   })
 
   Board.associate = function(models) {
