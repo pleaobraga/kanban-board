@@ -1,21 +1,23 @@
+import Boom from '@hapi/boom'
+
 import { Board, TaskList, Card } from '../../models'
 
 const kanbanListsName = ['BackLog', 'To do', 'In progress', 'Testing', 'Done']
 
 export const handlerGet = async (request, h) => {
   try {
-    let board = await Board.findAll({
+    let board = await Board.findOne({
       where: {
         name: request.params.boardName
       }
     })
 
-    console.log('board', board)
-
-    // return 'success'
+    let code = 200
 
     // Create new Board
-    if (board.length === 0) {
+    if (!board) {
+      code = 201
+
       const newBoard = await Board.create({
         name: request.params.boardName
       })
@@ -34,8 +36,6 @@ export const handlerGet = async (request, h) => {
 
       await Promise.all(promises)
 
-      console.log(newTaskLists[0].id)
-
       // Create one task card
       await Card.create({
         index: 0,
@@ -44,28 +44,30 @@ export const handlerGet = async (request, h) => {
         type: 'feature',
         TaskListId: newTaskLists[0].id
       })
-
-      const data = await Board.findOne({
-        where: { name: request.params.boardName },
-        include: [
-          {
-            model: TaskList,
-            as: 'TaskLists',
-            include: [
-              {
-                model: Card,
-                as: 'Cards'
-              }
-            ]
-          }
-        ]
-      })
-
-      h.re 
     }
+
+    const data = await Board.findOne({
+      where: { name: request.params.boardName },
+      include: [
+        {
+          model: TaskList,
+          as: 'TaskLists',
+          include: [
+            {
+              model: Card,
+              as: 'Cards'
+            }
+          ]
+        }
+      ]
+    })
+
+    return h
+      .response(data)
+      .code(code)
+      .type('application/json')
   } catch (error) {
-    console.log(error)
-    throw error
+    throw Boom.badData(error)
   }
 }
 
