@@ -10,35 +10,35 @@ exports.register = (server, options) => {
       cors: {
         origin: ['*'],
         additionalHeaders: ['content-type']
+      },
+      validate: {
+        payload: Joi.object({
+          lists: Joi.array().items(
+            Joi.object({
+              id: Joi.string().required(),
+              name: Joi.string().required(),
+              cards: Joi.array().items(
+                Joi.object({
+                  id: Joi.string().required(),
+                  type: Joi.string().required(),
+                  duration: Joi.number().required(),
+                  severity: Joi.string().required()
+                })
+              )
+            })
+          )
+        }),
+        failAction: (request, h, error) => {
+          throw error
+        }
       }
-      // validate: {
-      //   payload: Joi.object({
-      //     lists: Joi.array().items(
-      //       Joi.object({
-      //         id: Joi.string().required(),
-      //         title: Joi.string().required(),
-      //         cards: Joi.array().items(
-      //           Joi.object({
-      //             id: Joi.string().required(),
-      //             type: Joi.string().required(),
-      //             duration: Joi.number().required(),
-      //             severity: Joi.string().required()
-      //           })
-      //         )
-      //       })
-      //     )
-      //   }),
-      //   failAction: (request, h, error) => {
-      //     throw error
-      //   }
-      // }
     },
     handler: handlerPost
   })
 
   server.route({
     method: 'GET',
-    path: '/',
+    path: '/{boardName}',
     config: {
       tags: ['api'],
       cors: {

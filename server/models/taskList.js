@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    title: { type: DataTypes.STRING, allowNull: false }
+    name: { type: DataTypes.STRING, allowNull: false }
   })
 
   TaskList.associate = function(models) {
@@ -20,3 +20,5 @@ module.exports = (sequelize, DataTypes) => {
 
   return TaskList
 }
+
+

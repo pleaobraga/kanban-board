@@ -9,7 +9,7 @@ const options = {
 
 const startServer = async function() {
   try {
-    // models.sequelize.sync()
+    models.sequelize.sync({ force: true })
 
     const server = await Glue.compose(manifest, options)
     await server.start()
