@@ -1,35 +1,43 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import TaskList from './TaskList'
+import { Provider } from 'react-redux'
+import { DragDropContext } from 'react-beautiful-dnd'
+import {
+  mockStore,
+  initialStateRootReducer,
+  taskList
+} from '../../reducers/__mocks__/reduxMock'
 
-const cards = [
-  {
-    id: '0',
-    index: 0,
-    type: 'feature',
-    duration: 1,
-    severity: 'hight'
-  },
-  {
-    id: '1',
-    index: 1,
-    type: 'research',
-    duration: 2,
-    severity: 'medium'
-  },
-  {
-    id: '2',
-    index: 2,
-    type: 'update',
-    duration: 3,
-    severity: 'low'
+const setup = ({ props = {}, state = {} }) => {
+  const newProps = {
+    ...taskList,
+    ...props
   }
-]
+
+  const newState = {
+    board: {
+      ...initialStateRootReducer.content,
+      ...state
+    }
+  }
+
+  const store = mockStore(newState)
+
+  const contentPage = mount(
+    <Provider store={store}>
+      <DragDropContext>
+        <TaskList {...newProps} />
+      </DragDropContext>
+    </Provider>
+  )
+
+  return contentPage
+}
 
 describe('Task List', () => {
-  const component = shallow(<TaskList name="Task List" cards={cards} />)
-
-  it('render properly', () => {
+  it('should render properly', () => {
+    const component = setup({})
     expect(component).toMatchSnapshot()
   })
 })

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board Header should render properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <BoardHeader
+    name="test"
+  >
+    <div
+      className="board-header"
+    >
+      <h1
+        className="board-header__title"
+      >
+         Board Name: 
+        Test
+      </h1>
+      <div
+        className="board-header__actions"
+      >
+        <button
+          className="button button--add"
+          onClick={[Function]}
+        >
+          Add new task
+           
+        </button>
+      </div>
+    </div>
+  </BoardHeader>
+</Provider>
+`;

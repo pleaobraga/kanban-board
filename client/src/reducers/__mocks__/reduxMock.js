@@ -60,5 +60,5 @@ export const taskLists = [
 export const board = {
   id: 'da5ac7c2-3705-4a09-bf67-9c0ea4b3fae4',
   name: '1',
-  TaskLists: [taskList]
+  TaskLists: [...taskLists]
 }

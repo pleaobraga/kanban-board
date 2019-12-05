@@ -9,7 +9,7 @@ import {
 
 const setup = state => {
   const newState = {
-    content: {
+    board: {
       ...initialStateRootReducer.content,
       ...state
     }

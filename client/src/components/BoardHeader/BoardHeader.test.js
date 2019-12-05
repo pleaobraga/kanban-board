@@ -1,11 +1,34 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import Card from './Card'
+import { mount } from 'enzyme'
+import BoardHeader from './BoardHeader'
+import { Provider } from 'react-redux'
+import {
+  mockStore,
+  initialStateRootReducer
+} from '../../reducers/__mocks__/reduxMock'
 
-describe('Card', () => {
-  const card = shallow(<Card name="Test" text="test" index={0} id={0} />)
+const setup = ({ state = {} }) => {
+  const newState = {
+    board: {
+      ...initialStateRootReducer.content,
+      ...state
+    }
+  }
 
-  it('render properly', () => {
-    expect(card).toMatchSnapshot()
+  const store = mockStore(newState)
+
+  const contentPage = mount(
+    <Provider store={store}>
+      <BoardHeader name="test" />
+    </Provider>
+  )
+
+  return contentPage
+}
+
+describe('Board Header', () => {
+  it('should render properly', () => {
+    const component = setup({})
+    expect(component).toMatchSnapshot()
   })
 })

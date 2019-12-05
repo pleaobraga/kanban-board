@@ -1,25 +1,237 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Task List render properly 1`] = `
-<div
-  className="task-list"
+exports[`Task List should render properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <h2
-    className="task-list--title"
-  >
-    TASK LIST
-  </h2>
-  <Connect(Droppable)
-    direction="vertical"
-    getContainerForClone={[Function]}
-    ignoreContainerClipping={false}
-    isCombineEnabled={false}
-    isDropDisabled={false}
-    mode="standard"
-    renderClone={null}
-    type="DEFAULT"
-  >
-    <Component />
-  </Connect(Droppable)>
-</div>
+  <DragDropContext>
+    <ErrorBoundary>
+      <App
+        contextId="0"
+        liftInstruction="Draggable item. Ensure your screen reader is not in browse mode and then press space bar to lift."
+        setCallbacks={[Function]}
+      >
+        <Provider
+          context={
+            Object {
+              "$$typeof": Symbol(react.context),
+              "Consumer": Object {
+                "$$typeof": Symbol(react.context),
+                "_calculateChangedBits": null,
+                "_context": [Circular],
+              },
+              "Provider": Object {
+                "$$typeof": Symbol(react.provider),
+                "_context": [Circular],
+              },
+              "_calculateChangedBits": null,
+              "_currentRenderer": Object {},
+              "_currentRenderer2": null,
+              "_currentValue": null,
+              "_currentValue2": null,
+              "_threadCount": 0,
+            }
+          }
+          store={
+            Object {
+              "dispatch": [Function],
+              "getState": [Function],
+              "replaceReducer": [Function],
+              "subscribe": [Function],
+              Symbol(observable): [Function],
+            }
+          }
+        >
+          <TaskList
+            Cards={
+              Array [
+                Object {
+                  "TaskListId": "ae0e3de4-fa5c-4793-bde8-6c0b77a146fc",
+                  "TaskListIndex": 0,
+                  "duration": 2,
+                  "id": "448957e7-99e0-41d2-b36d-7b647063293d",
+                  "index": 0,
+                  "severity": "hight",
+                  "type": "feature",
+                },
+              ]
+            }
+            id="ae0e3de4-fa5c-4793-bde8-6c0b77a146fc"
+            index={0}
+            name="BackLog"
+          >
+            <div
+              className="task-list"
+            >
+              <h2
+                className="task-list__title"
+              >
+                BACK LOG
+              </h2>
+              <ConnectFunction
+                direction="vertical"
+                droppableId="ae0e3de4-fa5c-4793-bde8-6c0b77a146fc"
+                getContainerForClone={[Function]}
+                ignoreContainerClipping={false}
+                isCombineEnabled={false}
+                isDropDisabled={false}
+                mode="standard"
+                renderClone={null}
+                type="DEFAULT"
+              >
+                <Droppable
+                  direction="vertical"
+                  droppableId="ae0e3de4-fa5c-4793-bde8-6c0b77a146fc"
+                  getContainerForClone={[Function]}
+                  ignoreContainerClipping={false}
+                  isCombineEnabled={false}
+                  isDropDisabled={false}
+                  mode="standard"
+                  placeholder={null}
+                  renderClone={null}
+                  shouldAnimatePlaceholder={false}
+                  snapshot={
+                    Object {
+                      "draggingFromThisWith": null,
+                      "draggingOverWith": null,
+                      "isDraggingOver": false,
+                      "isUsingPlaceholder": false,
+                    }
+                  }
+                  type="DEFAULT"
+                  updateViewportMaxScroll={[Function]}
+                  useClone={null}
+                >
+                  <div
+                    className="task-list__cards-container false"
+                    data-rbd-droppable-context-id="0"
+                    data-rbd-droppable-id="ae0e3de4-fa5c-4793-bde8-6c0b77a146fc"
+                  >
+                    <Memo(Card)
+                      TaskListIndex={0}
+                      duration={2}
+                      id="448957e7-99e0-41d2-b36d-7b647063293d"
+                      index={0}
+                      key="448957e7-99e0-41d2-b36d-7b647063293d"
+                      severity="hight"
+                      type="feature"
+                    >
+                      <PublicDraggable
+                        draggableId="448957e7-99e0-41d2-b36d-7b647063293d"
+                        index={0}
+                      >
+                        <PrivateDraggable
+                          canDragInteractiveElements={false}
+                          draggableId="448957e7-99e0-41d2-b36d-7b647063293d"
+                          index={0}
+                          isClone={false}
+                          isEnabled={true}
+                          shouldRespectForcePress={false}
+                        >
+                          <Connect(Draggable)
+                            canDragInteractiveElements={false}
+                            draggableId="448957e7-99e0-41d2-b36d-7b647063293d"
+                            index={0}
+                            isClone={false}
+                            isEnabled={true}
+                            shouldRespectForcePress={false}
+                          >
+                            <Draggable
+                              canDragInteractiveElements={false}
+                              draggableId="448957e7-99e0-41d2-b36d-7b647063293d"
+                              dropAnimationFinished={[Function]}
+                              index={0}
+                              isClone={false}
+                              isEnabled={true}
+                              mapped={
+                                Object {
+                                  "combineTargetFor": null,
+                                  "offset": Object {
+                                    "x": 0,
+                                    "y": 0,
+                                  },
+                                  "shouldAnimateDisplacement": true,
+                                  "snapshot": Object {
+                                    "combineTargetFor": null,
+                                    "combineWith": null,
+                                    "draggingOver": null,
+                                    "dropAnimation": null,
+                                    "isClone": false,
+                                    "isDragging": false,
+                                    "isDropAnimating": false,
+                                    "mode": null,
+                                  },
+                                  "type": "SECONDARY",
+                                }
+                              }
+                              shouldRespectForcePress={false}
+                            >
+                              <div
+                                aria-labelledby="rbd-lift-instruction-0"
+                                className="card card--feature false"
+                                data-rbd-drag-handle-context-id="0"
+                                data-rbd-drag-handle-draggable-id="448957e7-99e0-41d2-b36d-7b647063293d"
+                                data-rbd-draggable-context-id="0"
+                                data-rbd-draggable-id="448957e7-99e0-41d2-b36d-7b647063293d"
+                                draggable={false}
+                                onDragStart={[Function]}
+                                onTransitionEnd={null}
+                                style={
+                                  Object {
+                                    "transform": null,
+                                    "transition": null,
+                                  }
+                                }
+                                tabIndex={0}
+                              >
+                                <i
+                                  className="material-icons close-icon"
+                                  onClick={[Function]}
+                                >
+                                  close
+                                </i>
+                                <h3
+                                  className="card__type"
+                                >
+                                  Feature
+                                </h3>
+                                <h4
+                                  className="card__duration"
+                                >
+                                  2 hrs
+                                </h4>
+                                <h3
+                                  className="card__severity"
+                                >
+                                  Hight
+                                </h3>
+                              </div>
+                            </Draggable>
+                          </Connect(Draggable)>
+                        </PrivateDraggable>
+                      </PublicDraggable>
+                    </Memo(Card)>
+                    <AnimateInOut
+                      on={null}
+                      shouldAnimate={false}
+                    />
+                  </div>
+                </Droppable>
+              </ConnectFunction>
+            </div>
+          </TaskList>
+        </Provider>
+      </App>
+    </ErrorBoundary>
+  </DragDropContext>
+</Provider>
 `;
