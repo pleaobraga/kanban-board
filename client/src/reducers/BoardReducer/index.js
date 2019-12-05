@@ -1,10 +1,12 @@
+export { default } from './BoardReducer'
+
 export {
-  default,
   getBoardStart,
   getBoardSuccess,
   getBoardError,
   getBoard,
   postBoard,
   putBoard,
-  postCard
-} from './BoardReducer'
+  postCard,
+  deleteCard
+} from './BorderActions'

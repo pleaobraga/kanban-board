@@ -7,7 +7,7 @@ import { Droppable } from 'react-beautiful-dnd'
 
 import { default as Task } from '../Card'
 
-export const TaskList = ({ id, name, Cards }) => {
+export const TaskList = ({ id, name, Cards, index }) => {
   return (
     <div className="task-list">
       <h2 className="task-list__title">{upperCase(name)}</h2>
@@ -19,15 +19,15 @@ export const TaskList = ({ id, name, Cards }) => {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {Cards.map((card, index) => (
+            {Cards.map((card, cardIndex) => (
               <Task
                 key={card.id}
                 id={card.id}
-                index={index}
+                index={cardIndex}
                 type={card.type}
                 duration={card.duration}
                 severity={card.severity}
-                TaskListId={id}
+                TaskListIndex={index}
               />
             ))}
             {provided.placeholder}
@@ -41,7 +41,8 @@ export const TaskList = ({ id, name, Cards }) => {
 TaskList.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  Cards: PropTypes.arrayOf(PropTypes.shape(Task.propTypes))
+  Cards: PropTypes.arrayOf(PropTypes.shape(Task.propTypes)),
+  index: PropTypes.number.isRequired
 }
 
 export default TaskList
