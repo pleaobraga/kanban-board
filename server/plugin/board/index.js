@@ -1,5 +1,7 @@
 import Joi from '@hapi/joi'
+
 import { handlerGet } from './handler'
+import { boardSchema } from '../../schema'
 
 exports.register = (server, options) => {
   server.route({
@@ -12,7 +14,11 @@ exports.register = (server, options) => {
         origin: ['*'],
         additionalHeaders: ['content-type']
       },
-      description: 'Get Board'
+      description: 'Get Board',
+      response: {
+        schema: boardSchema,
+        failAction: 'log'
+      }
     },
 
     handler: handlerGet

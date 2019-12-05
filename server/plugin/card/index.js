@@ -1,13 +1,7 @@
 import Joi from '@hapi/joi'
-import { handlerPut } from './handler'
 
-const CardType = {
-  Feature: 'feature',
-  BugFix: 'bugFix',
-  Update: 'update',
-  Research: 'research',
-  Content: 'content'
-}
+import { handlerPut } from './handler'
+import { cardSchema } from '../../schema'
 
 exports.register = (server, options) => {
   server.route({
@@ -31,19 +25,7 @@ exports.register = (server, options) => {
         }
       },
       response: {
-        schema: Joi.object({
-          id: Joi.string(),
-          index: Joi.number(),
-          type: Joi.string().valid(
-            CardType.Feature,
-            CardType.BugFix,
-            CardType.Update,
-            CardType.Research,
-            CardType.Content
-          ),
-          duration: Joi.number(),
-          severity: Joi.string().valid('hight', 'medium', 'low')
-        }).label('Card'),
+        schema: cardSchema,
         failAction: 'log'
       }
     },
