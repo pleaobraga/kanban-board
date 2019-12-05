@@ -8,12 +8,13 @@ import TaskList from '../TaskList'
 export const Board = ({ TaskLists }) => {
   return (
     <div className="board">
-      {TaskLists.map(list => (
+      {TaskLists.map((list, index) => (
         <TaskList
           id={list.id}
           key={list.id}
           name={list.name}
           Cards={list.Cards}
+          index={index}
         />
       ))}
     </div>

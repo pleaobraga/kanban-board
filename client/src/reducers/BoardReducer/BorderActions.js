@@ -73,7 +73,7 @@ export const getBoard = (boardName = 0) => dispatch => {
       return response.data
     })
     .catch(error => {
-      if (error.response.status === 404) dispatch(postBoard(boardName))
+      if (error.response.status === 404) return dispatch(postBoard(boardName))
 
       dispatch(getBoardError(error))
     })
@@ -112,10 +112,9 @@ export const deleteCardStart = () => ({
   type: constant.DELETE_CARD
 })
 
-export const deleteCardSuccess = ({ cardIndex, listIndex }) => ({
+export const deleteCardSuccess = card => ({
   type: constant.DELETE_CARD_SUCCESS,
-  cardIndex,
-  listIndex
+  card
 })
 
 export const deleteCardError = error => ({
@@ -137,19 +136,16 @@ export const postCard = card => dispatch => {
     })
 }
 
-export const deleteCard = ({ card, taskListIndex }) => dispatch => {
-  dispatch(putBoard())
-
-  debugger
+export const deleteCard = card => dispatch => {
+  dispatch(deleteCardStart())
 
   return axios
-    .delete(`${constant.API_URL}/card`, card.id)
-    .then(response => {
-      debugger
-      dispatch(putBoardSuccess({ cardIndex: card.index, taskListIndex }))
-      return response.data
+    .delete(`${constant.API_URL}/card/${card.id}`)
+    .then(() => {
+      dispatch(deleteCardSuccess(card))
+      return
     })
     .catch(error => {
-      dispatch(putBoardError(error))
+      dispatch(deleteCardError(error))
     })
 }

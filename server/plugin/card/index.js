@@ -64,7 +64,7 @@ exports.register = (server, options) => {
 
   server.route({
     method: 'DELETE',
-    path: '/card',
+    path: '/card/{id}',
     config: {
       tags: ['api'],
       cors: {
@@ -73,7 +73,7 @@ exports.register = (server, options) => {
       },
       description: 'Delete card',
       validate: {
-        payload: Joi.object({
+        params: Joi.object({
           id: Joi.string().required()
         }).label('CardDeletePaylad'),
         failAction: (request, h, error) => {

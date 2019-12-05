@@ -63,12 +63,12 @@ export const handlerPost = async (request, h) => {
 }
 
 export const handlerDelete = async (request, h) => {
-  const { payload } = request
+  const { params } = request
 
   try {
     await Card.destroy({
       where: {
-        id: payload.id
+        id: params.id
       }
     })
 

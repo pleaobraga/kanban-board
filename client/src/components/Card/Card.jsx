@@ -4,12 +4,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { startCase, kebabCase } from 'lodash'
 import { Draggable } from 'react-beautiful-dnd'
+import { useDispatch } from 'react-redux'
 
-export const Card = ({ id, index, type, duration, severity, TaskListId }) => {
+import { deleteCard } from '../../reducers/BoardReducer'
+
+export const Card = ({
+  id,
+  index,
+  type,
+  duration,
+  severity,
+  TaskListIndex
+}) => {
+  const dispatch = useDispatch()
+
   const deleteItem = () => {
     //TODO Implemen delete function
 
-    //console.log(TaskListId)
+    const card = {
+      id,
+      index,
+      TaskListIndex
+    }
+
+    dispatch(deleteCard(card))
   }
 
   return (
@@ -43,7 +61,7 @@ Card.propTypes = {
     .isRequired,
   duration: PropTypes.number.isRequired,
   severity: PropTypes.oneOf(['hight', 'medium', 'low']).isRequired,
-  TaskListId: PropTypes.string.isRequired
+  TaskListIndex: PropTypes.number.isRequired
 }
 
 export default React.memo(Card)
