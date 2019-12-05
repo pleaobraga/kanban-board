@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    name: { type: DataTypes.STRING, allowNull: false }
+    name: { type: DataTypes.STRING, allowNull: false },
+    index: { type: DataTypes.INTEGER, allowNull: false }
   })
 
   TaskList.associate = function(models) {

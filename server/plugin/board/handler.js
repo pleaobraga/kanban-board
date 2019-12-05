@@ -2,7 +2,13 @@ import Boom from '@hapi/boom'
 
 import { Board, TaskList, Card } from '../../models'
 
-const kanbanListsName = ['BackLog', 'To do', 'In progress', 'Testing', 'Done']
+const kanbanListsName = [
+  { name: 'BackLog', index: 0 },
+  { name: 'To do', index: 1 },
+  { name: 'In progress', index: 2 },
+  { name: 'Testing', index: 3 },
+  { name: 'Done', index: 4 }
+]
 
 export const handlerGet = async (request, h) => {
   let board
@@ -29,7 +35,7 @@ export const handlerGet = async (request, h) => {
         {
           model: TaskList,
           as: 'TaskLists',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'index'],
           include: [
             {
               model: Card,
@@ -76,10 +82,11 @@ export const handlerPost = async (request, h) => {
     const newTaskLists = []
 
     // Create task lists
-    const promises = kanbanListsName.map(async listName => {
+    const promises = kanbanListsName.map(async item => {
       const taskList = await TaskList.create({
-        name: listName,
-        BoardId: newBoard.id
+        name: item.name,
+        BoardId: newBoard.id,
+        index: item.index
       })
 
       newTaskLists.push(taskList)
@@ -103,7 +110,8 @@ export const handlerPost = async (request, h) => {
         {
           model: TaskList,
           as: 'TaskLists',
-          attributes: ['id', 'name'],
+          attributes: ['id', 'name', 'index'],
+          order: ['index'],
           include: [
             {
               model: Card,

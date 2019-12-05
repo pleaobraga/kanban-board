@@ -30,6 +30,7 @@ export const cardSchema = Joi.object({
 export const taskListSchema = Joi.object({
   id: Joi.string(),
   name: Joi.string(),
+  index: Joi.number(),
   Cards: Joi.array().items(cardSchema)
 }).label('TaskList')
 
