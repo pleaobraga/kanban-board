@@ -43,6 +43,20 @@ export const putBoardError = error => ({
   error
 })
 
+export const postCardStart = () => ({
+  type: constant.POST_CARD
+})
+
+export const postCardSuccess = card => ({
+  type: constant.POST_CARD_SUCCESS,
+  card
+})
+
+export const postCardError = error => ({
+  type: constant.POST_CARD_ERROR,
+  error
+})
+
 export const postBoard = (boardName = 0) => dispatch => {
   dispatch(postBoardStart())
 
@@ -88,6 +102,23 @@ export const putBoard = ({ board, card }) => dispatch => {
     })
     .catch(error => {
       dispatch(putBoardError(error))
+    })
+}
+
+export const postCard = card => dispatch => {
+  dispatch(postCardStart())
+
+  debugger
+
+  return axios
+    .post(`${constant.API_URL}/card`, card)
+    .then(response => {
+      debugger
+      dispatch(postCardSuccess(response.data))
+      return response.data
+    })
+    .catch(error => {
+      dispatch(postCardError(error))
     })
 }
 
@@ -150,6 +181,33 @@ const content = (state = initialState, action) => {
       }
 
     case constant.PUT_BOARD_ERROR:
+      return {
+        ...state,
+        loadingContent: false,
+        errorContent: true
+      }
+
+    case constant.POST_CARD:
+      return { ...state, loadingContent: true }
+
+    case constant.POST_CARD_SUCCESS:
+      debugger
+
+      // eslint-disable-next-line no-case-declarations
+      const newTaskLists = [...state.board.TaskLists]
+      newTaskLists[0].Cards.push(action.card)
+
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          TaskLists: [...newTaskLists]
+        },
+        loadingContent: false,
+        errorContent: false
+      }
+
+    case constant.POST_CARD_ERROR:
       return {
         ...state,
         loadingContent: false,

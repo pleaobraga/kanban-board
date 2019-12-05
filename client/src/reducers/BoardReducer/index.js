@@ -5,5 +5,6 @@ export {
   getBoardError,
   getBoard,
   postBoard,
-  putBoard
+  putBoard,
+  postCard
 } from './BoardReducer'

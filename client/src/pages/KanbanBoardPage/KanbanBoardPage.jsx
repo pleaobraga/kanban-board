@@ -9,10 +9,7 @@ import Board from '../../components/Board'
 import BoardHeader from '../../components/BoardHeader'
 import Loading from '../../components/Loader'
 import ErrorPage from '../ErrorPage'
-import {
-  getBoard as actionGetBoard,
-  putBoard
-} from '../../reducers/BoardReducer'
+import { getBoard, putBoard } from '../../reducers/BoardReducer'
 import { findObject, removeObjFromArray } from '../../utils/utils'
 
 const KanbanBoardPage = () => {
@@ -21,7 +18,7 @@ const KanbanBoardPage = () => {
   const { boardName } = useParams()
 
   React.useEffect(() => {
-    dispatch(actionGetBoard(boardName || 0))
+    dispatch(getBoard(boardName || 0))
   }, [])
 
   const changeCards = (
