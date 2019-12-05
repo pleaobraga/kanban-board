@@ -10,11 +10,11 @@ import Card from '../Card'
 export const TaskList = ({ id, name, cards }) => {
   return (
     <div className="task-list">
-      <h2 className="task-list--title">{upperCase(name)}</h2>
+      <h2 className="task-list__title">{upperCase(name)}</h2>
       <Droppable droppableId={id}>
         {(provided, snapshot) => (
           <div
-            className={`task-list--cards-container ${snapshot.isDraggingOver &&
+            className={`task-list__cards-container ${snapshot.isDraggingOver &&
               'dragging-over'}`}
             ref={provided.innerRef}
             {...provided.droppableProps}

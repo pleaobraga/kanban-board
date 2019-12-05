@@ -43,54 +43,78 @@ export const BoardHeader = ({ name }) => {
       TaskListId: backLogList.id
     }
 
-    console.log('to aki')
-
     dispatch(postCard(card))
   }
 
   return (
     <div className="board-header">
-      <h1 className="board-header--title"> Board Name: {startCase(name)}</h1>
-      <div className="board-header--actions">
+      <h1 className="board-header__title"> Board Name: {startCase(name)}</h1>
+      <div className="board-header__actions">
         {createButton ? (
           <form className="form" id="createButton">
-            <h2>New Task:</h2>
+            <h2 className="form__title">New Task:</h2>
 
-            <label htmlFor="type">Type</label>
-            <select name="type" value={newCard.type} onChange={handleChange}>
-              {cardTask.types.map(type => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
+            <div className="form__values">
+              <div className="form-control">
+                <label htmlFor="type">Type</label>
+                <select
+                  name="type"
+                  value={newCard.type}
+                  onChange={handleChange}
+                >
+                  {cardTask.types.map(type => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <label htmlFor="duration">Duration</label>
-            <input
-              name="duration"
-              type="number"
-              value={newCard.duration}
-              onChange={handleChange}
-            />
+              <div className="form-control">
+                <label htmlFor="duration">Duration</label>
+                <input
+                  name="duration"
+                  type="number"
+                  value={newCard.duration}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <label htmlFor="severity">Severity</label>
-            <select
-              name="severity"
-              value={newCard.severity}
-              onChange={handleChange}
-            >
-              {cardTask.severities.map(severity => (
-                <option key={severity} value={severity}>
-                  {severity}
-                </option>
-              ))}
-            </select>
+              <div className="form-control">
+                <label htmlFor="severity">Severity</label>
+                <select
+                  name="severity"
+                  value={newCard.severity}
+                  onChange={handleChange}
+                >
+                  {cardTask.severities.map(severity => (
+                    <option key={severity} value={severity}>
+                      {severity}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
 
-            <button onClick={createCardTask}>Create Task</button>
-            <button onClick={() => setCreateButton(false)}>Cancel</button>
+            <div className="form__actions">
+              <button
+                className="button button--primary"
+                onClick={createCardTask}
+              >
+                Create Task
+              </button>
+              <button
+                className="button button--secondary"
+                onClick={() => setCreateButton(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         ) : (
-          <button onClick={() => setCreateButton(true)}>Add new task </button>
+          <button className="button " onClick={() => setCreateButton(true)}>
+            Add new task{' '}
+          </button>
         )}
       </div>
     </div>

@@ -48,23 +48,23 @@
     opacity: 0.2;
   }
 
-  &__feature {
-    background: $blue;
+  &--feature {
+    background: $blue-light;
   }
 
-  &__update {
+  &--update {
     background-color: $orange;
   }
 
-  &__bug-fix {
+  &--bug-fix {
     background-color: $salmon;
   }
 
-  &__research {
+  &--research {
     background-color: $purple;
   }
 
-  &__content {
+  &--content {
     background-color: $green;
   }
 
@@ -72,21 +72,21 @@
     background-color: lightgreen;
   }
 
-  &--type {
+  &__type {
     font-family: 'Handlee', cursive;
     font-size: 4rem;
     color: $dark-blue;
     text-align: left;
   }
 
-  &--duration {
+  &__duration {
     font-family: 'Handlee', cursive;
     font-size: 3rem;
     color: $white;
     text-align: left;
   }
 
-  &--severity {
+  &__severity {
     font-family: 'Handlee', cursive;
     font-size: 3rem;
     color: $white;
