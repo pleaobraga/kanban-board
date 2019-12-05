@@ -1,34 +1,47 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import { number, select } from '@storybook/addon-knobs'
+import { DragDropContext } from 'react-beautiful-dnd'
 import { text } from '@storybook/addon-knobs'
+
+import ProviderWrapper from '../../../.storybook/provider'
+import store from '../../../.storybook/configureStore'
+import { board, card } from '../../reducers/__mocks__/reduxMock'
 import { TaskList } from './TaskList'
 
-const cards = [
-  {
-    id: '0',
-    index: 0,
-    type: 'feature',
-    duration: 1,
-    severity: 'hight'
-  },
-  {
-    id: '1',
-    index: 1,
-    type: 'research',
-    duration: 2,
-    severity: 'medium'
-  },
-  {
-    id: '2',
-    index: 2,
-    type: 'update',
-    duration: 3,
-    severity: 'low'
-  }
-]
+const initialState = {
+  board,
+  loadingContent: false,
+  errorContent: false
+}
 
-export default storiesOf('Components | TaskList', module).add(
-  'default',
-  () => <TaskList name={text('name', 'Task List')} cards={cards} />,
-  { info: { inline: true, header: false } }
+const newStore = store(initialState)
+
+const withProvider = story => (
+  <ProviderWrapper store={newStore}>{story()}</ProviderWrapper>
 )
+
+export default storiesOf('Components | Task List', module)
+  .addDecorator(withProvider)
+  .add(
+    'default',
+    () => (
+      <DragDropContext>
+        <TaskList
+          Cards={[card]}
+          id={'0'}
+          index={0}
+          TaskListIndex={1}
+          name={text('Name', 'Task List')}
+        />
+      </DragDropContext>
+    ),
+    {
+      info: {
+        inline: true,
+        header: false,
+        source: false,
+        propTables: [TaskList]
+      }
+    }
+  )
