@@ -71,7 +71,7 @@ exports.register = (server, options) => {
         origin: ['*'],
         additionalHeaders: ['content-type']
       },
-      description: 'Update card',
+      description: 'Delete card',
       validate: {
         payload: Joi.object({
           id: Joi.string().required()

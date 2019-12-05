@@ -40,7 +40,7 @@ export const handlerGet = async (request, h) => {
             {
               model: Card,
               as: 'Cards',
-              attributes: { exclude: ['createdAt', 'updatedAt', 'TaskListId'] }
+              attributes: { exclude: ['createdAt', 'updatedAt'] }
             }
           ]
         }
@@ -116,7 +116,7 @@ export const handlerPost = async (request, h) => {
             {
               model: Card,
               as: 'Cards',
-              attributes: { exclude: ['createdAt', 'updatedAt', 'TaskListId'] }
+              attributes: { exclude: ['createdAt', 'updatedAt'] }
             }
           ]
         }
