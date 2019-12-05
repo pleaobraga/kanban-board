@@ -25,7 +25,9 @@ exports.register = (server, options) => {
         }
       },
       response: {
-        schema: cardSchema,
+        status: {
+          200: cardSchema
+        },
         failAction: 'log'
       }
     },
@@ -42,7 +44,7 @@ exports.register = (server, options) => {
         origin: ['*'],
         additionalHeaders: ['content-type']
       },
-      description: 'Update card',
+      description: 'Create card',
       validate: {
         payload: cardSchema,
         failAction: (request, h, error) => {
@@ -50,7 +52,9 @@ exports.register = (server, options) => {
         }
       },
       response: {
-        schema: cardSchema,
+        status: {
+          201: cardSchema
+        },
         failAction: 'log'
       }
     },

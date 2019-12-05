@@ -30,7 +30,7 @@ export const handlerPut = async (request, h) => {
       .code(200)
       .type('application/json')
   } catch (error) {
-    throw Boom.badData(error)
+    throw Boom.boomify(error)
   }
 }
 
@@ -55,9 +55,9 @@ export const handlerPost = async (request, h) => {
 
     return h
       .response(newCard)
-      .code(200)
+      .code(201)
       .type('application/json')
   } catch (error) {
-    throw Boom.badData(error)
+    throw Boom.boomify(error)
   }
 }
