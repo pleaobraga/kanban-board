@@ -1,8 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, select } from '@storybook/addon-knobs'
-import { DragDropContext } from 'react-beautiful-dnd'
 import { text } from '@storybook/addon-knobs'
+import { DragDropContext } from 'react-beautiful-dnd'
 
 import ProviderWrapper from '../../../.storybook/provider'
 import store from '../../../.storybook/configureStore'

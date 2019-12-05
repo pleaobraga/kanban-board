@@ -1,11 +1,39 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
+import { DragDropContext } from 'react-beautiful-dnd'
 
-import Board from './Board'
-import { board } from '../../reducers/__mocks__/reduxMock'
+import ProviderWrapper from '../../../.storybook/provider'
+import store from '../../../.storybook/configureStore'
+import { taskLists, board } from '../../reducers/__mocks__/reduxMock'
+import { Board } from './Board'
 
-export default storiesOf('Components | Board', module).add(
-  'default',
-  () => <Board TaskLists={board.TaskLists} />,
-  { info: { inline: true, header: false } }
+const initialState = {
+  board,
+  loadingContent: false,
+  errorContent: false
+}
+
+const newStore = store(initialState)
+
+const withProvider = story => (
+  <ProviderWrapper store={newStore}>{story()}</ProviderWrapper>
 )
+
+export default storiesOf('Components | Board', module)
+  .addDecorator(withProvider)
+  .add(
+    'default',
+    () => (
+      <DragDropContext>
+        <Board TaskLists={taskLists} />
+      </DragDropContext>
+    ),
+    {
+      info: {
+        inline: true,
+        header: false,
+        source: false,
+        propTables: [Board]
+      }
+    }
+  )

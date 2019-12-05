@@ -1,22 +1,30 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { number, select } from '@storybook/addon-knobs'
-import { Card } from './Card'
 
-export default storiesOf('Components | Card', module).add(
-  'default',
-  () => (
-    <Card
-      id={'0'}
-      index={0}
-      type={select(
-        'Type',
-        ['feature', 'bug fix', 'update', 'research', 'content'],
-        'feature'
-      )}
-      duration={number('Duration', 1)}
-      severity={select('Severity', ['hight', 'medium', 'low'], 'medium')}
-    />
-  ),
-  { info: { inline: true, header: false } }
+import ProviderWrapper from '../../../.storybook/provider'
+import store from '../../../.storybook/configureStore'
+import { board } from '../../reducers/__mocks__/reduxMock'
+import { BoardHeader } from './BoardHeader'
+
+const initialState = {
+  board,
+  loadingContent: false,
+  errorContent: false
+}
+
+const newStore = store(initialState)
+
+const withProvider = story => (
+  <ProviderWrapper store={newStore}>{story()}</ProviderWrapper>
 )
+
+export default storiesOf('Components | Board Header', module)
+  .addDecorator(withProvider)
+  .add('default', () => <BoardHeader name={'KanbanBoard'} />, {
+    info: {
+      inline: true,
+      header: false,
+      source: false,
+      propTables: [BoardHeader]
+    }
+  })

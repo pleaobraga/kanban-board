@@ -36,6 +36,27 @@ export const taskList = {
   Cards: [card]
 }
 
+export const taskLists = [
+  {
+    id: 'ae0e3de4-fa5c-4793-bde8-6c0b77a146fc',
+    name: 'BackLog',
+    index: 0,
+    Cards: [card]
+  },
+  {
+    id: 'ae0e3de4-fa5c-4793-bde8-6c0b77a146fc',
+    name: 'Testing',
+    index: 0,
+    Cards: [card]
+  },
+  {
+    id: 'ae0e3de4-fa5c-4793-bde8-6c0b77a146fc',
+    name: 'Done',
+    index: 0,
+    Cards: [card]
+  }
+]
+
 export const board = {
   id: 'da5ac7c2-3705-4a09-bf67-9c0ea4b3fae4',
   name: '1',
