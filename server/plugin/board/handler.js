@@ -5,7 +5,7 @@ import { Board, TaskList, Card } from '../../models'
 const kanbanListsName = [
   { name: 'BackLog', index: 0 },
   { name: 'To do', index: 1 },
-  { name: 'In progress', index: 2 },
+  { name: 'Doing', index: 2 },
   { name: 'Testing', index: 3 },
   { name: 'Done', index: 4 }
 ]

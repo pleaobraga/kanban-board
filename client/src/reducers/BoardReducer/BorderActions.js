@@ -50,7 +50,13 @@ export const postBoard = (boardName = 0) => dispatch => {
   return axios
     .post(`${constant.API_URL}/board/${boardName}`)
     .then(response => {
-      dispatch(postBoardSuccess(response.data))
+      const orderTasklists = response.data.TaskLists.sort(
+        (a, b) => a.index - b.index
+      )
+
+      dispatch(
+        postBoardSuccess({ ...response.data, TaskLists: orderTasklists })
+      )
       return response.data
     })
     .catch(error => {
