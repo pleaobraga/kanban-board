@@ -1,51 +1,20 @@
 import Joi from '@hapi/joi'
-import { handlerGet, handlerPost } from './handler'
+import { handlerGet } from './handler'
 
 exports.register = (server, options) => {
   server.route({
-    method: 'POST',
-    path: '/',
+    method: 'GET',
+    path: '/{boardName}',
+
     config: {
       tags: ['api'],
       cors: {
         origin: ['*'],
         additionalHeaders: ['content-type']
       },
-      validate: {
-        payload: Joi.object({
-          lists: Joi.array().items(
-            Joi.object({
-              id: Joi.string().required(),
-              name: Joi.string().required(),
-              cards: Joi.array().items(
-                Joi.object({
-                  id: Joi.string().required(),
-                  type: Joi.string().required(),
-                  duration: Joi.number().required(),
-                  severity: Joi.string().required()
-                })
-              )
-            })
-          )
-        }),
-        failAction: (request, h, error) => {
-          throw error
-        }
-      }
+      description: 'Get Board'
     },
-    handler: handlerPost
-  })
 
-  server.route({
-    method: 'GET',
-    path: '/{boardName}',
-    config: {
-      tags: ['api'],
-      cors: {
-        origin: ['*'],
-        additionalHeaders: ['content-type']
-      }
-    },
     handler: handlerGet
   })
 }

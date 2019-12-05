@@ -48,14 +48,17 @@ export const handlerGet = async (request, h) => {
 
     const data = await Board.findOne({
       where: { name: request.params.boardName },
+      attributes: ['id', 'name'],
       include: [
         {
           model: TaskList,
           as: 'TaskLists',
+          attributes: ['id', 'name'],
           include: [
             {
               model: Card,
-              as: 'Cards'
+              as: 'Cards',
+              attributes: { exclude: ['createdAt', 'updatedAt', 'TaskListId'] }
             }
           ]
         }
@@ -69,10 +72,4 @@ export const handlerGet = async (request, h) => {
   } catch (error) {
     throw Boom.badData(error)
   }
-}
-
-export const handlerPost = (request, h) => {
-  return h.response({
-    message: 'success'
-  })
 }

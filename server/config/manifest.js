@@ -11,6 +11,9 @@ const manifest = {
       { plugin: require('@hapi/vision') },
       {
         plugin: require('../plugin/board')
+      },
+      {
+        plugin: require('../plugin/card')
       }
     ]
   }
