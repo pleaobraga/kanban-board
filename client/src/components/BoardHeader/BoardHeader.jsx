@@ -112,7 +112,10 @@ export const BoardHeader = ({ name }) => {
             </div>
           </form>
         ) : (
-          <button className="button " onClick={() => setCreateButton(true)}>
+          <button
+            className="button button--add"
+            onClick={() => setCreateButton(true)}
+          >
             Add new task{' '}
           </button>
         )}

@@ -8,7 +8,7 @@
   margin: 5rem;
 
   &__title {
-    font-size: 10rem;
+    font-size: 8rem;
   }
 
   .form {
@@ -81,6 +81,11 @@
       color: $white;
       background-color: $red;
       font-size: 1.5rem;
+    }
+
+    &--add {
+      background: $green;
+      color: $white;
     }
   }
 }
