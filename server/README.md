@@ -1,26 +1,6 @@
-# React Scaffold
+# Kanban Board - Server
 
-This is a React based project, which I built from scratch, that helps you to quickly start your own new React Project.
-
-It is integrated with the newest libraries of:
-
-- Redux
-- React Router Dom
-- Jest
-- Enzyme
-- Storybook
-- Babel
-- Webpack
-
-There is a small implementation that can helps you to:
-
-- Improve the architecture of your project
-- Test you project with Jest and Enzyme
-- Increase the performance of your project using dynamic imports
-- See practical examples of the new \***\*React Hooks feature**
-- See some implementation of the new React-redux features like useSelector and useDispatch
-- Document your project with Storybook
-- Improve your code using Prettier and ESlint
+This is the back end of the application
 
 # Quick Start
 
@@ -29,10 +9,14 @@ There is a small implementation that can helps you to:
 To start the project use this command in your terminal
 
 ```
-yarn i
+yarn add
 ```
 
 in your terminal to install all dependencies
+
+## Config the .env
+
+Before start the server do not forget to set up the .env file, with your db credentials, define the port ...
 
 ## Starting the project
 
@@ -44,145 +28,63 @@ yarn start
 
 wait for a few seconds and the project will open a new tab in your browser automatically
 
-### Changing default port
-
-The default port is 3000 but if you want to change it to the port 3000 use this command
-
-```
-yarn start -- --port=3000
-```
-
-## Build the project
-
-```
-yarn run build
-```
-
-## Testing the project
-
-There are some commands to test the project
-
-### Test all project
-
-```
-yarn run test
-```
-
-This command executes the Jest and test all **.test.js** files in your project
-
-### Watch Tests in the project
-
-```
-yarn run test:watch
-```
-
-This command executes the Jest watchAll and observes all your tests
-
-### Update snapshots
-
-```
-yarn run test:update
-```
-
-This command executes update all snapshots
-
-### Check the coverage
-
-```
-yarn run test:coverage
-```
-
-This command executes Jest coverage and checks the coverage of your tests
-
-## Using Storybok
-
-To start the Storybook use the command:
-
-```
-yarn run storybook
-```
-
-This will open a new webpage with Storybook running on port 9000
-
-### Addons
-
-This storybook is already configured with some addons like Knobs, Actions, and Info.
-
-### Create a new story
-
-To create a new story you create the file {yourComponent}.stories.js
-Export the story and import it to **./.storybook/index.stories.js**
-You can check this file **./.storybook/index.stories.js** and other examples in the project to better understand the process.
-
-### Create a new story with Redux
-
-Check the **src/pages/ContentPage/ContentPage.stories.js** to see how to use the Redux with Storybook
-
-## Commits
-
-This project uses Husk.js and everytime you push the code it will run the pre-commit task to check the lint and run all tests, **so the code will only be pushed if it follows the lint rules and does not have any test errors.**
-
 ## Project Architecture
 
-The project achitechture is page based, and usin SOLID principles and the source folder is like:
+### Root folder
+
+The project achichitecture was based on SOLID principles and the server folder is like:
 
 ```
-src
-  components
-  pages
-  reducers
-  utils
-  routes.js
+server
+  config
+  models
+  plugin
+  schema
+```
+
+### Routes/plugins
+
+it was used the hapi/glue in this project so the plugin solution was implemented.
+
+The plugins were plited into separate folders each one and its achitecture is:
+
+```
+plugin
+  handler
   index
 ```
 
-### Components Pages
+handler contains the handlers functions of the routes and the index exports the routes to the manifest
 
-The architecture for the js files is like follow the example
+### DataBase and validations
+
+It was used the **sequelized** library to handle with the data base and **hapi/joy** to validate
+
+it was created 2 different folders models, and schema to make the code more reusable.
 
 ```
-components
-  Component
-    index.js
-    Component.test.js
-    Component.storie.js (what makes sense)
-    Component.scss (what makes sense)
-    Component.jsx
+server
+  schema
+    index
+  models
+    model
+    index
 ```
 
-So each component has its on test, storie, jsx file and a index to export all of it.
+the schema folder handle with the Joi schema, and the model the sequelize models
 
-This architechture is easy to mantain because to fix a component you can go in its folder and change ereything from it.
+### Configurations
 
-### Reducers
+there is one folder on the served to handle the configurations
 
-For this example I did not split the reducer from the action creators because this project is too small, but if the project increase so slit reducer from actions.
+```
+server
+  config
+    config
+    manifest
+  .env
+```
 
-### Utils
+the config file exports the .env configurations to the application and the manifests deal with routes configs based on **hapi/glue** especification
 
-In the utils folder I keep some functions and the contants files
-
-## Dynamic Import and Performance
-
-Nowadays we need to pay attention on performace, if we do not take care of it your project wold work but slowly and the client expetrience become very frustated.
-
-I created in ths project a component called DynamicImport, it is integrate with the webpack so you can create diferent bundles with it and import them dynamically so you only will import the correct bundle for that page.
-
-It is applyed on the **routes.js** file, so each page you import will automaticaly create a new bandle performaticly bundle.
-
-Check on the routes file how to use it and check the DynamicImport component to see how it works
-
-This component is better than **React.lazy** because it can handle 3 diferents situation:
-
-- Loading
-- Error
-- Component
-
-diferent from **React.lazy** and **React.Suspense** which could only handle:
-
-- Loading
-- Component
-
-## Vendors
-
-The webpack is configurated to create a vendors file with common libraries like react, redux ...
+it was used the babel to transpile the JS code, so the new javascrip features were applied into it, like import and export
