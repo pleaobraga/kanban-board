@@ -7,10 +7,10 @@ import { Droppable } from 'react-beautiful-dnd'
 
 import Card from '../Card'
 
-export const TaskList = ({ id, title, cards }) => {
+export const TaskList = ({ id, name, cards }) => {
   return (
     <div className="task-list">
-      <h2 className="task-list--title">{upperCase(title)}</h2>
+      <h2 className="task-list--title">{upperCase(name)}</h2>
       <Droppable droppableId={id}>
         {(provided, snapshot) => (
           <div
@@ -39,9 +39,10 @@ export const TaskList = ({ id, title, cards }) => {
 
 TaskList.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       type: PropTypes.oneOf([
         'feature',
         'bugFix',

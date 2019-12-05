@@ -17,8 +17,6 @@ export const handlerGet = async (request, h) => {
     throw Boom.boomify(error)
   }
 
-  console.log(board)
-
   if (!board) {
     throw Boom.notFound()
   }

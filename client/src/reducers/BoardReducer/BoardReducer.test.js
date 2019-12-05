@@ -61,7 +61,7 @@ describe('Board Redux', () => {
       lists: [
         {
           id: '0',
-          title: 'Backlog',
+          name: 'Backlog',
           cards: [
             {
               id: 'test1',
@@ -73,7 +73,7 @@ describe('Board Redux', () => {
         },
         {
           id: '1',
-          title: 'To DO',
+          name: 'To DO',
           cards: []
         }
       ]
@@ -110,7 +110,7 @@ describe('Board Redux', () => {
   //         lists: [
   //           {
   //             id: '0',
-  //             title: 'Backlog',
+  //             name: 'Backlog',
   //             cards: [
   //               {
   //                 id: 'test1',
@@ -134,7 +134,7 @@ describe('Board Redux', () => {
   //           },
   //           {
   //             id: '1',
-  //             title: 'To DO',
+  //             name: 'To DO',
   //             cards: []
   //           }
   //         ]

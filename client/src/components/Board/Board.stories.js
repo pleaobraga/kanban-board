@@ -29,17 +29,17 @@ const cards = [
 const lists = [
   {
     id: '0',
-    title: 'Backlog',
+    name: 'Backlog',
     cards
   },
   {
     id: '1',
-    title: 'To do ',
+    name: 'To do ',
     cards
   },
   {
     id: '2',
-    title: 'Done',
+    name: 'Done',
     cards
   }
 ]

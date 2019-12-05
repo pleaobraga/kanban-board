@@ -3,50 +3,48 @@ import './KanbanBoardPage.scss'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DragDropContext } from 'react-beautiful-dnd'
+import { useParams } from 'react-router-dom'
 
 import Board from '../../components/Board'
 import Loading from '../../components/Loader'
 import ErrorPage from '../ErrorPage'
 import {
   getBoard as actionGetBoard,
-  postBoard
+  putBoard
 } from '../../reducers/BoardReducer'
 import { findObject, removeObjFromArray } from '../../utils/utils'
 
 const KanbanBoardPage = () => {
   const dispatch = useDispatch()
   const pageContent = useSelector(state => state.board)
-
-  const getBoard = React.useCallback(() => dispatch(actionGetBoard()), [
-    dispatch
-  ])
+  const { boardName } = useParams()
 
   React.useEffect(() => {
-    getBoard()
+    dispatch(actionGetBoard(boardName || 0))
   }, [])
 
   const changeCards = (
     listInitial,
-    InitialIndex,
+    initialIndex,
     listDestination,
-    DestinationIndex
+    destinationIndex
   ) => {
-    const newInitialCards = Array.from(listInitial.cards)
-    const removedItem = newInitialCards.splice(InitialIndex, 1)
+    const newInitialCards = Array.from(listInitial.Cards)
+    const removedItem = newInitialCards.splice(initialIndex, 1)
     let newDestinationList = null
 
-    let newlists = Array.from(pageContent.board.lists)
+    let newlists = Array.from(pageContent.board.TaskLists)
     removeObjFromArray(newlists, listInitial)
 
     if (listInitial === listDestination) {
-      newInitialCards.splice(DestinationIndex, 0, removedItem[0])
+      newInitialCards.splice(destinationIndex, 0, removedItem[0])
     } else {
-      const newDestinationCards = Array.from(listDestination.cards)
-      newDestinationCards.splice(DestinationIndex, 0, removedItem[0])
+      const newDestinationCards = Array.from(listDestination.Cards)
+      newDestinationCards.splice(destinationIndex, 0, removedItem[0])
 
       newDestinationList = {
         ...listDestination,
-        cards: newDestinationCards
+        Cards: newDestinationCards
       }
 
       removeObjFromArray(newlists, listDestination)
@@ -55,12 +53,21 @@ const KanbanBoardPage = () => {
 
     const newlistInitial = {
       ...listInitial,
-      cards: newInitialCards
+      Cards: newInitialCards
     }
 
     const sortList = [...newlists, newlistInitial].sort((a, b) => a.id - b.id)
 
-    dispatch(postBoard({ lists: [...sortList] }))
+    dispatch(
+      putBoard({
+        board: { TaskLists: [...sortList] },
+        card: {
+          id: removedItem[0].id,
+          cardIndex: destinationIndex,
+          taskListId: listDestination.id
+        }
+      })
+    )
   }
 
   const onDragEnd = result => {
@@ -78,12 +85,13 @@ const KanbanBoardPage = () => {
     }
 
     const listInitial = findObject(
-      pageContent.board.lists,
+      pageContent.board.TaskLists,
       'id',
       source.droppableId
     )
+
     const listDestination = findObject(
-      pageContent.board.lists,
+      pageContent.board.TaskLists,
       'id',
       destination.droppableId
     )
@@ -96,7 +104,7 @@ const KanbanBoardPage = () => {
   ) : pageContent.board ? (
     <div className="page page-kanban-board">
       <DragDropContext onDragEnd={onDragEnd}>
-        <Board lists={pageContent.board.lists} />
+        <Board TaskLists={pageContent.board.TaskLists} />
       </DragDropContext>
     </div>
   ) : (

@@ -7,7 +7,6 @@ exports.register = (server, options) => {
   server.route({
     method: 'GET',
     path: '/board/{boardName}',
-
     config: {
       tags: ['api'],
       cors: {

@@ -21,6 +21,7 @@ const Routes = () => {
     <BrowserRouter>
       <React.Suspense fallback={<ErrorPage />}>
         <Switch>
+          <Route exact path="/:boardName" component={KanbanBoardPage} />
           <Route exact path="/" component={KanbanBoardPage} />
           <Route component={ErrorPage} />
         </Switch>

@@ -27,7 +27,7 @@ const cards = [
 ]
 
 describe('Task List', () => {
-  const component = shallow(<TaskList title="Task List" cards={cards} />)
+  const component = shallow(<TaskList name="Task List" cards={cards} />)
 
   it('render properly', () => {
     expect(component).toMatchSnapshot()

@@ -29,6 +29,6 @@ const cards = [
 
 export default storiesOf('Components | TaskList', module).add(
   'default',
-  () => <TaskList title={text('Title', 'Task List')} cards={cards} />,
+  () => <TaskList name={text('name', 'Task List')} cards={cards} />,
   { info: { inline: true, header: false } }
 )
