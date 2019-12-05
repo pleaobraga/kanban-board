@@ -5,9 +5,11 @@ import PropTypes from 'prop-types'
 import { startCase, kebabCase } from 'lodash'
 import { Draggable } from 'react-beautiful-dnd'
 
-export const Card = ({ id, index, type, duration, severity }) => {
+export const Card = ({ id, index, type, duration, severity, TaskListId }) => {
   const deleteItem = () => {
     //TODO Implemen delete function
+
+    //console.log(TaskListId)
   }
 
   return (
@@ -40,7 +42,8 @@ Card.propTypes = {
   type: PropTypes.oneOf(['feature', 'bugFix', 'update', 'research', 'content'])
     .isRequired,
   duration: PropTypes.number.isRequired,
-  severity: PropTypes.oneOf(['hight', 'medium', 'low']).isRequired
+  severity: PropTypes.oneOf(['hight', 'medium', 'low']).isRequired,
+  TaskListId: PropTypes.string.isRequired
 }
 
 export default React.memo(Card)

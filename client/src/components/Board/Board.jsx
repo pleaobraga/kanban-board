@@ -13,7 +13,7 @@ export const Board = ({ TaskLists }) => {
           id={list.id}
           key={list.id}
           name={list.name}
-          cards={list.Cards}
+          Cards={list.Cards}
         />
       ))}
     </div>
@@ -21,26 +21,7 @@ export const Board = ({ TaskLists }) => {
 }
 
 Board.propTypes = {
-  TaskLists: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      Cards: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          type: PropTypes.oneOf([
-            'feature',
-            'bugFix',
-            'update',
-            'research',
-            'content'
-          ]).isRequired,
-          duration: PropTypes.number.isRequired,
-          severity: PropTypes.oneOf(['hight', 'medium', 'low']).isRequired
-        })
-      )
-    })
-  )
+  TaskLists: PropTypes.arrayOf(PropTypes.shape(TaskList.propTypes))
 }
 
 export default Board

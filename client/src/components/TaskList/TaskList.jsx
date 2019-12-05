@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import { upperCase } from 'lodash'
 import { Droppable } from 'react-beautiful-dnd'
 
-import Card from '../Card'
+import { default as Task } from '../Card'
 
-export const TaskList = ({ id, name, cards }) => {
+export const TaskList = ({ id, name, Cards }) => {
   return (
     <div className="task-list">
       <h2 className="task-list__title">{upperCase(name)}</h2>
@@ -19,14 +19,15 @@ export const TaskList = ({ id, name, cards }) => {
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {cards.map((card, index) => (
-              <Card
+            {Cards.map((card, index) => (
+              <Task
                 key={card.id}
                 id={card.id}
                 index={index}
                 type={card.type}
                 duration={card.duration}
                 severity={card.severity}
+                TaskListId={id}
               />
             ))}
             {provided.placeholder}
@@ -40,20 +41,7 @@ export const TaskList = ({ id, name, cards }) => {
 TaskList.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      type: PropTypes.oneOf([
-        'feature',
-        'bugFix',
-        'update',
-        'research',
-        'content'
-      ]).isRequired,
-      duration: PropTypes.number.isRequired,
-      severity: PropTypes.oneOf(['hight', 'medium', 'low']).isRequired
-    })
-  )
+  Cards: PropTypes.arrayOf(PropTypes.shape(Task.propTypes))
 }
 
 export default TaskList
