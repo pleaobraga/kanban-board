@@ -6,6 +6,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import { useParams } from 'react-router-dom'
 
 import Board from '../../components/Board'
+import BoardHeader from '../../components/BoardHeader'
 import Loading from '../../components/Loader'
 import ErrorPage from '../ErrorPage'
 import {
@@ -56,7 +57,9 @@ const KanbanBoardPage = () => {
       Cards: newInitialCards
     }
 
-    const sortList = [...newlists, newlistInitial].sort((a, b) => a.id - b.id)
+    const sortList = [...newlists, newlistInitial].sort(
+      (a, b) => a.index - b.index
+    )
 
     dispatch(
       putBoard({
@@ -99,12 +102,15 @@ const KanbanBoardPage = () => {
     changeCards(listInitial, source.index, listDestination, destination.index)
   }
 
-  return pageContent.errorContent ? (
+  const { errorContent, board } = pageContent
+
+  return errorContent ? (
     <ErrorPage />
-  ) : pageContent.board ? (
+  ) : board ? (
     <div className="page page-kanban-board">
+      <BoardHeader name={board.name} />
       <DragDropContext onDragEnd={onDragEnd}>
-        <Board TaskLists={pageContent.board.TaskLists} />
+        <Board TaskLists={board.TaskLists} />
       </DragDropContext>
     </div>
   ) : (

@@ -63,7 +63,12 @@ export const getBoard = (boardName = 0) => dispatch => {
   return axios
     .get(`${constant.API_URL}/board/${boardName}`)
     .then(response => {
-      dispatch(getBoardSuccess(response.data))
+      const orderTasklists = response.data.TaskLists.sort(
+        (a, b) => a.index - b.index
+      )
+
+      dispatch(getBoardSuccess({ ...response.data, TaskLists: orderTasklists }))
+
       return response.data
     })
     .catch(error => {
@@ -74,15 +79,11 @@ export const getBoard = (boardName = 0) => dispatch => {
 }
 
 export const putBoard = ({ board, card }) => dispatch => {
-  dispatch(putBoardStart())
-
-  debugger
+  dispatch(putBoardSuccess(board))
 
   return axios
     .put(`${constant.API_URL}/card`, card)
     .then(response => {
-      debugger
-      dispatch(putBoardSuccess(board))
       return response.data
     })
     .catch(error => {
@@ -138,11 +139,12 @@ const content = (state = initialState, action) => {
       return { ...state, loadingContent: true }
 
     case constant.PUT_BOARD_SUCCESS:
-      debugger
-
       return {
         ...state,
-        board: { ...state.board, TaskList: [...action.board.TaskLists] },
+        board: {
+          ...state.board,
+          TaskLists: [...action.board.TaskLists]
+        },
         loadingContent: false,
         errorContent: false
       }
