@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "React Node Kanban app ",
   "main": "index.js",
+  "engines": {
+    "node": "12.13.1",
+    "yarn": "1.19.2"
+  },
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
