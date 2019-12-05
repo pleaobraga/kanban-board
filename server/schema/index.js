@@ -21,7 +21,8 @@ export const cardSchema = Joi.object({
     CardType.Content
   ),
   duration: Joi.number(),
-  severity: Joi.string().valid('hight', 'medium', 'low')
+  severity: Joi.string().valid('hight', 'medium', 'low'),
+  TaskListId: Joi.string()
 }).label('Card')
 
 // ------ TaskList ------

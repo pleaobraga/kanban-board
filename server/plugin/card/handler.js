@@ -37,32 +37,20 @@ export const handlerPut = async (request, h) => {
 export const handlerPost = async (request, h) => {
   const { payload } = request
 
-  console.log('payload', payload)
-
   try {
-    let card = await Card.findOne({
+    let newCard = await Card.create({
+      index: payload.index,
+      type: payload.type,
+      duration: payload.duration,
+      severity: payload.severity,
+      TaskListId: payload.TaskListId
+    })
+
+    newCard = await Card.findOne({
       where: {
-        id: payload.id
-      }
-    })
-
-    const newCard = await card.update({
-      TaskListId: payload.taskListId,
-      index: payload.cardIndex
-    })
-
-    const schema = Joi.object({
-      id: Joi.string(),
-      index: Joi.number(),
-      type: Joi.string().valid(
-        CardType.Feature,
-        CardType.BugFix,
-        CardType.Update,
-        CardType.Research,
-        CardType.Content
-      ),
-      duration: Joi.number(),
-      severity: Joi.string().valid('hight', 'medium', 'low')
+        id: newCard.id
+      },
+      attributes: { exclude: ['createdAt', 'updatedAt', 'TaskListId'] }
     })
 
     return h

@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi'
 
-import { handlerPut } from './handler'
+import { handlerPut, handlerPost } from './handler'
 import { cardSchema } from '../../schema'
 
 exports.register = (server, options) => {
@@ -31,6 +31,31 @@ exports.register = (server, options) => {
     },
 
     handler: handlerPut
+  })
+
+  server.route({
+    method: 'POST',
+    path: '/card',
+    config: {
+      tags: ['api'],
+      cors: {
+        origin: ['*'],
+        additionalHeaders: ['content-type']
+      },
+      description: 'Update card',
+      validate: {
+        payload: cardSchema,
+        failAction: (request, h, error) => {
+          throw error
+        }
+      },
+      response: {
+        schema: cardSchema,
+        failAction: 'log'
+      }
+    },
+
+    handler: handlerPost
   })
 }
 
