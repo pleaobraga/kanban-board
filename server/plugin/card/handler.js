@@ -61,3 +61,22 @@ export const handlerPost = async (request, h) => {
     throw Boom.boomify(error)
   }
 }
+
+export const handlerDelete = async (request, h) => {
+  const { payload } = request
+
+  try {
+    await Card.destroy({
+      where: {
+        id: payload.id
+      }
+    })
+
+    return h
+      .response()
+      .code(204)
+      .type('application/json')
+  } catch (error) {
+    throw Boom.boomify(error)
+  }
+}

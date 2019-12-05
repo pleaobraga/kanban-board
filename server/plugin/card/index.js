@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi'
 
-import { handlerPut, handlerPost } from './handler'
+import { handlerPut, handlerPost, handlerDelete } from './handler'
 import { cardSchema } from '../../schema'
 
 exports.register = (server, options) => {
@@ -60,6 +60,35 @@ exports.register = (server, options) => {
     },
 
     handler: handlerPost
+  })
+
+  server.route({
+    method: 'DELETE',
+    path: '/card',
+    config: {
+      tags: ['api'],
+      cors: {
+        origin: ['*'],
+        additionalHeaders: ['content-type']
+      },
+      description: 'Update card',
+      validate: {
+        payload: Joi.object({
+          id: Joi.string().required()
+        }).label('CardDeletePaylad'),
+        failAction: (request, h, error) => {
+          throw error
+        }
+      },
+      response: {
+        status: {
+          204: cardSchema
+        },
+        failAction: 'log'
+      }
+    },
+
+    handler: handlerDelete
   })
 }
 
