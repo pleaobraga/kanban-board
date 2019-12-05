@@ -1,8 +1,8 @@
-# React Scaffold
+# Kanban Board - Client
 
-This is a React based project, which I built from scratch, that helps you to quickly start your own new React Project.
+This do not uses Crete React App, but uses the [react/scarfold](https://github.com/pleaobraga/react-scaffold) create by myself, if you want to know it better check the link, it explains a lot about everithing.
 
-It is integrated with the newest libraries of:
+This Projec is integrated with the newest libraries of:
 
 - Redux
 - React Router Dom
@@ -12,16 +12,6 @@ It is integrated with the newest libraries of:
 - Babel
 - Webpack
 
-There is a small implementation that can helps you to:
-
-- Improve the architecture of your project
-- Test you project with Jest and Enzyme
-- Increase the performance of your project using dynamic imports
-- See practical examples of the new \***\*React Hooks feature**
-- See some implementation of the new React-redux features like useSelector and useDispatch
-- Document your project with Storybook
-- Improve your code using Prettier and ESlint
-
 # Quick Start
 
 ## Installing dependencies
@@ -29,7 +19,7 @@ There is a small implementation that can helps you to:
 To start the project use this command in your terminal
 
 ```
-yarn i
+yarn add
 ```
 
 in your terminal to install all dependencies
@@ -39,60 +29,16 @@ in your terminal to install all dependencies
 To start the project use this command in your terminal
 
 ```
-yarn start
+yarn run start
 ```
 
 wait for a few seconds and the project will open a new tab in your browser automatically
-
-### Changing default port
-
-The default port is 3000 but if you want to change it to the port 3000 use this command
-
-```
-yarn start -- --port=3000
-```
 
 ## Build the project
 
 ```
 yarn run build
 ```
-
-## Testing the project
-
-There are some commands to test the project
-
-### Test all project
-
-```
-yarn run test
-```
-
-This command executes the Jest and test all **.test.js** files in your project
-
-### Watch Tests in the project
-
-```
-yarn run test:watch
-```
-
-This command executes the Jest watchAll and observes all your tests
-
-### Update snapshots
-
-```
-yarn run test:update
-```
-
-This command executes update all snapshots
-
-### Check the coverage
-
-```
-yarn run test:coverage
-```
-
-This command executes Jest coverage and checks the coverage of your tests
 
 ## Using Storybok
 
@@ -107,16 +53,6 @@ This will open a new webpage with Storybook running on port 9000
 ### Addons
 
 This storybook is already configured with some addons like Knobs, Actions, and Info.
-
-### Create a new story
-
-To create a new story you create the file {yourComponent}.stories.js
-Export the story and import it to **./.storybook/index.stories.js**
-You can check this file **./.storybook/index.stories.js** and other examples in the project to better understand the process.
-
-### Create a new story with Redux
-
-Check the **src/pages/ContentPage/ContentPage.stories.js** to see how to use the Redux with Storybook
 
 ## Commits
 

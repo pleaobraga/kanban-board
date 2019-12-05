@@ -1,6 +1,13 @@
 # Kanban Board - Server
 
-This is the back end of the application
+This is a Node based project and server the back end of the application
+
+it uses hapi as a node framework an its modules
+
+- hapi
+- hapi/boom
+- hapi/glue
+- hapi/joi
 
 # Quick Start
 
@@ -23,7 +30,7 @@ Before start the server do not forget to set up the .env file, with your db cred
 To start the project use this command in your terminal
 
 ```
-yarn start
+yarn run start
 ```
 
 wait for a few seconds and the project will open a new tab in your browser automatically
@@ -58,7 +65,7 @@ handler contains the handlers functions of the routes and the index exports the 
 
 ### DataBase and validations
 
-It was used the **sequelized** library to handle with the data base and **hapi/joy** to validate
+It was used the **sequelized** library to handle with the data base, **hapi/joy** and **hapi/boom** to validate and handle the messages
 
 it was created 2 different folders models, and schema to make the code more reusable.
 
